@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import javax.swing.*;
 
 public class InteractionsPanel extends JPanel
@@ -6,11 +7,13 @@ public class InteractionsPanel extends JPanel
    
    public InteractionsPanel( String info)
    {
-      
+      information = new JLabel(info);
+      information.setPreferredSize( new Dimension(info.length() * 10, info.length() / 10));
    }
    
-   public void update()
+   public void update( String info)
    {
-      
+      information.setText(info);
+      information.setPreferredSize( new Dimension(info.length() * 10, info.length() / 10));
    }
 }
