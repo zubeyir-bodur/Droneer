@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * BU CLASS TEST AMAÇLIDIR. ÝÞÝMÝZ BÝTÝNCE KURTULACAZ BUNDAN 
+ * BU CLASS TEST AMAÃ‡LIDIR. Ä°ÅžÄ°MÄ°Z BÄ°TÄ°NCE KURTULACAZ BUNDAN 
  */
 public class InteractionsPanelTest
 {
@@ -15,11 +15,45 @@ public class InteractionsPanelTest
       myFrame.pack();
       myFrame.setVisible(true);
       
-      for ( int i = 0; i < 200; i++)
+      for ( int i = 0; i < 200; i++) // YaklaÅŸÄ±k 3 4 sn sÃ¼rÃ¼yor. Tek amacÄ± zaman geÃ§irtmek.
          System.out.println(":D");
       
-      test.update("36 error found:\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.\nInteger 1000000000 is too large.");
-      
-      
+      test.update("36 error found:"
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large."
+                  + "\nInteger 1000000000 is too large.");
    }
 }
