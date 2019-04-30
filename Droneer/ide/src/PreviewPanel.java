@@ -61,6 +61,6 @@ public class PreviewPanel extends JPanel
 //               battle.getDrones().get(i).getY(),
 //               battle.getDrones().get(i).getWidth(),
 //               battle.getDrones().get(i).getHeight() );
-// Burda drone'larý çiziyor. Bullet diye bi class da yazmamýz lazým galiba bullet'larý çizemeyebiliriz.
+// Burda drone'larÄ± Ã§iziyor. Bullet diye bi class da yazmamÃ½z lazÃ½m galiba bullet'larÃ½ Ã§izemeyebiliriz.
    }
 }
