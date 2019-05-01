@@ -1,9 +1,16 @@
+package src;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 //import droneer.drone.*;
 //import droneer.battle.*;
 
+/**
+ * UNDER CONSTRUCTION - PLZ DONT INITIALIZE
+ * @author Zübeyir Bodur
+ * @version 1.5.2019
+ */
 public class PreviewPanel extends JPanel
 {
    final int DELAY = 10;
@@ -35,22 +42,35 @@ public class PreviewPanel extends JPanel
 //      }
 //   }
    
+   /**
+    * Starts the simulation
+    */
    public void start()
    {
       timer.start();
    }
    
+   /**
+    * Pauses the simulation
+    */
    public void pause()
    {
       timer.stop();
    }
    
+   /**
+    * Stops the simulation
+    */
    public void stop()
    {
       timer.restart();
       timer.stop();
    }
    
+   /**
+    * Draws filled ovals that represent drones each 10 milisecond.
+    * For bullets, draws points each 10 miliseconds.
+    */
    @Override
    public void paintComponent( Graphics g)
    {
@@ -61,6 +81,6 @@ public class PreviewPanel extends JPanel
 //               battle.getDrones().get(i).getY(),
 //               battle.getDrones().get(i).getWidth(),
 //               battle.getDrones().get(i).getHeight() );
-// Burda drone'larÄ± Ã§iziyor. Bullet diye bi class da yazmamÃ½z lazÃ½m galiba bullet'larÃ½ Ã§izemeyebiliriz.
+// Burda drone'larý çiziyor. Bullet diye bi class da yazmamýz lazým galiba bullet'larý çizemeyebiliriz.
    }
 }
