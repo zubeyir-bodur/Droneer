@@ -1,11 +1,10 @@
 package src;
 
 import java.io.*;
-import java.nio.file.Files;
 
 /**
  * A text to java converter
- * @author Zübeyir Bodur
+ * @author ZÃ¼beyir Bodur
  * @version 1.5.2019
  */
 public class TextToJava
@@ -34,7 +33,7 @@ public class TextToJava
    }
    
    /**
-    * Converts the code string to a java file to /drone/mydrones package
+    * Converts the code string to a java file at /drone/mydrones package
     */
    public void convertToMydrones()
    {
@@ -53,17 +52,12 @@ public class TextToJava
             File actualFile = new File( targetDir);
             
             if ( actualFile.exists() )
-            {
                actualFile.delete();
-            }
-            if(afile.renameTo(actualFile) )
-            {
+            
+            if( afile.renameTo(actualFile) )
                System.out.println("File is moved successful!");
-            }
             else
-            {
-               System.out.println("File is failed to move! mydrones contain already ur file!?");
-            }  
+               System.out.println("File is failed to move!");
          } 
          catch ( Exception e)
          {
@@ -75,5 +69,4 @@ public class TextToJava
          e.printStackTrace();
       }
    }
-   
 }
