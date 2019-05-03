@@ -1,0 +1,74 @@
+package menus;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.util.ArrayList;
+import javax.swing.UIManager.*;
+
+public class MenuTestClass {
+   
+   
+   static JFrame mainMenuFrame = new JFrame("Main Menu");
+   static ArrayList<Menu> menus = new ArrayList<Menu>();
+   static ArrayList<JFrame> frames = new ArrayList<JFrame>();
+   static JPanel mainPanel = new JPanel();
+   static MainMenu mainMenuPanel = new MainMenu(menus);
+   static PlayMenu playMenuPanel = new PlayMenu(menus);
+   
+   public void testForFocus() {
+      
+   }
+   public MenuTestClass() {
+   }
+   public MenuTestClass(MainMenu mainMenu) {
+      mainMenuPanel = mainMenu;
+   }
+   public MenuTestClass(PlayMenu playMenu) {
+      playMenuPanel = playMenu;
+   }
+   
+   public static void main(String[] args) {
+      LayoutManager overlay = new OverlayLayout(mainMenuFrame);
+      mainMenuFrame.setLayout(overlay);
+      
+      mainMenuPanel.playButton.addActionListener(new ActionListener(){
+      
+         public void actionPerformed(ActionEvent e) {
+            mainMenuPanel.setVisible(false);
+         }
+         
+    });
+      
+      
+//      try {
+//         for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//            if ("Nimbus".equals(info.getName())) {
+//               UIManager.setLookAndFeel(info.getClassName());
+//               break;
+//            }
+//         }
+//      } catch (Exception e) {
+//         // If Nimbus is not available, you can set the GUI to another look and feel.
+//      }
+      
+      mainPanel.setLayout(new OverlayLayout(mainPanel));
+      mainPanel.add(mainMenuPanel);
+      mainPanel.add(playMenuPanel);
+      
+      menus.add(mainMenuPanel);
+      menus.add(playMenuPanel);
+      
+      mainMenuFrame.add(mainPanel);
+      
+//      mainMenuFrame.add(mainMenuPanel);
+//      mainMenuFrame.add(playMenuPanel);
+//      playMenuPanel.setVisible(false);
+      mainMenuFrame.pack();
+      mainMenuFrame.setVisible(true);
+      
+   }
+
+}

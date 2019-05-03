@@ -1,0 +1,12 @@
+package menus;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.util.ArrayList;
+
+public class DesignMenu extends JPanel {
+
+}

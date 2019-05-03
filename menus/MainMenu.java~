@@ -1,0 +1,47 @@
+package menus;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.util.ArrayList;
+
+public class MainMenu extends Menu {
+
+   MenuTestClass m = new MenuTestClass(this);
+   ArrayList<Menu> menus;
+   private boolean focused;
+   private JLabel droneerLabel;
+   JButton playButton;
+   
+   public MainMenu(ArrayList<Menu> menus) {
+      
+      this.menus = menus;
+      
+      droneerLabel = new JLabel("DRONEER");
+      playButton = new JButton("Play");
+      
+      focused = false;
+      
+      playButton.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            focused = true;
+         }
+         
+      });
+      add(droneerLabel);
+      add(playButton);
+      setVisible(true);
+   }
+   
+   public void setFocused(boolean foc) {
+      focused = foc;
+   }
+   
+   public boolean getFocused() {
+      return focused;
+   }
+   
+}
+
