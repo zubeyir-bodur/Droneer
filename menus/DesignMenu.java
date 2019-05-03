@@ -7,6 +7,12 @@ import java.awt.event.*;
 import java.beans.*;
 import java.util.ArrayList;
 
+/**
+ * Class that generates the design menu panel
+ * @author Ege Kaan Gürkan
+ * @version 03/05/2019
+ */
+
 public class DesignMenu extends Menu {
    
    JFileChooser fileChooser = new JFileChooser("/Users/egekaangurkan/Desktop/DRONEER");
@@ -16,6 +22,9 @@ public class DesignMenu extends Menu {
    private JLabel explainLabel;
    private ArrayList<JComponent> components;
    
+   /**
+    * Creates a JFileChooser and displays it with the given directory
+    */
    public DesignMenu() {
       
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -41,9 +50,18 @@ public class DesignMenu extends Menu {
       
    }
    
+   /**
+    * Sets the focused variable to a given value
+    * @param a The boolean value to set focused to 
+    */
+   
    public void setFocused(boolean a) {
       focused = a;
    }
+   
+   /**
+    * Returns whether the panel is focused or not
+    */
    
    public boolean getFocused() {
       return focused;

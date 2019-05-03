@@ -7,6 +7,12 @@ import java.awt.event.*;
 import java.beans.*;
 import java.util.ArrayList;
 
+/**
+ * The main menu panel
+ * @author Ege Kaan Gürkan
+ * @version 03/05/2019
+ */
+
 public class MainMenu extends Menu {
 
    private MenuTestClass m = new MenuTestClass(this);
@@ -24,15 +30,18 @@ public class MainMenu extends Menu {
    public MainMenu(ArrayList<Menu> menus) {
       
       this.menus = menus;
+      
       components = new ArrayList<JComponent>();
       
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       
+      // Block to set the label style
       droneerLabel = new JLabel("DRONEER");
       droneerLabel.setForeground(Color.WHITE);
       droneerLabel.setFont(new Font("Monospaced", Font.PLAIN, 50));
       droneerLabel.setBorder(new EmptyBorder(10,0,10,0));
       
+      // Create the initialised buttons
       playButton = new DroneerMenuButton("Play");
       designButton = new DroneerMenuButton("Design");
       helpButton = new DroneerMenuButton("Help");
@@ -40,6 +49,7 @@ public class MainMenu extends Menu {
       creditsButton = new DroneerMenuButton("Credits");
       exitButton = new DroneerMenuButton("Exit");
       
+      // Add the components to an arraylist to quickly set the center alignment
       components.add(droneerLabel);
       components.add(playButton);
       components.add(designButton);
@@ -72,9 +82,18 @@ public class MainMenu extends Menu {
       add(exitButton);
    }
    
-   public void setFocused(boolean foc) {
-      focused = foc;
+   /**
+    * Sets the focused variable to a given value
+    * @param a The boolean value to set focused to 
+    */
+   
+   public void setFocused(boolean a) {
+      focused = a;
    }
+   
+   /**
+    * Returns whether the panel is focused or not
+    */
    
    public boolean getFocused() {
       return focused;

@@ -14,7 +14,6 @@ public class MenuTestClass {
    static JFrame mainMenuFrame = new JFrame("Main Menu");
    static ArrayList<Menu> menus = new ArrayList<Menu>();
    static ArrayList<JFrame> frames = new ArrayList<JFrame>();
-   static JPanel mainPanel = new JPanel();
    static JFrame playMenuFrame = new JFrame("Play Menu");
    static JFrame designMenuFrame = new JFrame("Design Menu");
    static MainMenu mainMenuPanel = new MainMenu(menus);
@@ -38,17 +37,20 @@ public class MenuTestClass {
    
    public static void main(String[] args) {
       
-      //******** MAIN MENU PANEL BUTTON ACTIONS
+      //******** MAIN MENU PANEL BUTTON ACTIONS ********
       
+      // If clicked on the PLAY BUTTON in MAIN MENU
       mainMenuPanel.playButton.addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
+            // Set the mainMenuFrame to be invisible and make playMenuFrame visible
             mainMenuFrame.setVisible(false);
             playMenuFrame.setVisible(true);
          }
          
       });
       
+      // If clicked on the DESIGN BUTTON in MAIN MENU
       mainMenuPanel.designButton.addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
@@ -59,6 +61,7 @@ public class MenuTestClass {
          
       });
       
+      // If clicked on the EXIT BUTTON in MAIN MENU
       mainMenuPanel.exitButton.addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
@@ -67,8 +70,9 @@ public class MenuTestClass {
          
       });
       
-      //******** PLAY MENU PANEL BUTTON ACTIONS
+      //******** PLAY MENU PANEL BUTTON ACTIONS ********
       
+      // If clicked on the STORY BUTTON in PLAY MENU
       playMenuPanel.storyButton.addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
@@ -78,7 +82,7 @@ public class MenuTestClass {
          
       });
       
-      //******** DESIGN MENU PANEL BUTTON ACTIONS
+      //******** DESIGN MENU PANEL BUTTON ACTIONS ********
       
       designMenuPanel.backButton.addActionListener(new ActionListener(){
          
@@ -89,6 +93,7 @@ public class MenuTestClass {
          
       });
       
+      //******** ADD FRAMES TO ARRAYLIST ********
       frames.add(mainMenuFrame);
       frames.add(playMenuFrame);
       frames.add(designMenuFrame);
@@ -96,6 +101,9 @@ public class MenuTestClass {
       for(JFrame f: frames) {
          f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       }
+      
+      //******** UNCOMMENT IF NIMBUS IS WANTED TO BE USED ********
+      
 //      try {
 //         for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 //            if ("Nimbus".equals(info.getName())) {
@@ -108,13 +116,15 @@ public class MenuTestClass {
 //      }
       
       
+      //******** ADD PANELS TO AN ARRAYLIST ********
       menus.add(mainMenuPanel);
       menus.add(playMenuPanel);
       
-      mainMenuFrame.add(mainPanel);
       
+      //******** ADD THE PANELS TO INDIVIDUAL FRAMES ********
       mainMenuFrame.add(mainMenuPanel);
       playMenuFrame.add(playMenuPanel);
+      
       designMenuFrame.add(designMenuPanel);
       
       for(JFrame f: frames) {

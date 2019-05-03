@@ -6,6 +6,12 @@ import java.awt.event.*;
 import java.beans.*;
 import java.util.ArrayList;
 
+/**
+ * Class that styles the application-standard buttons that are used
+ * @author Ege Kaan Gürkan
+ * @version 03/05/2019
+ */
+
 public class DroneerMenuButton extends JButton {
 
    public DroneerMenuButton(String name) {
