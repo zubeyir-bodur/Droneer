@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @version 03/05/2019
  */
 
-public class MainMenu extends Menu {
+public class ArenaMenu extends Menu {
 
    private MenuTestClass m = new MenuTestClass(this);
    private ArrayList<Menu> menus;
@@ -27,7 +27,7 @@ public class MainMenu extends Menu {
    DroneerMenuButton creditsButton;
    DroneerMenuButton exitButton;
    
-   public MainMenu(ArrayList<Menu> menus) {
+   public ArenaMenu(ArrayList<Menu> menus) {
       
       this.menus = menus;
       

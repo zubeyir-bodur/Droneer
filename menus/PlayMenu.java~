@@ -2,42 +2,78 @@ package menus;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.util.ArrayList;
 
+/**
+ * The play menu panel
+ * @author Ege Kaan Gürkan
+ * @version 03/05/2019
+ */
+
 public class PlayMenu extends Menu {
 
-   MenuTestClass m = new MenuTestClass(this);
-   ArrayList<Menu> menus;
+   private MenuTestClass m = new MenuTestClass(this);
+   private ArrayList<Menu> menus;
+   private ArrayList<JComponent> components;
    private boolean focused;
-   private JLabel droneerLabel;
-   JButton playButton;
+   private JLabel selectLabel;
+   DroneerMenuButton storyButton;
+   DroneerMenuButton arenaButton;
    
    public PlayMenu(ArrayList<Menu> menus) {
       
       this.menus = menus;
+      components = new ArrayList<JComponent>();
       
-      droneerLabel = new JLabel("lols");
-      playButton = new JButton("idfk");
+      setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      
+      // Block to set the style of the label
+      selectLabel = new JLabel("Select a game mode");
+      selectLabel.setForeground(Color.WHITE);
+      selectLabel.setFont(new Font("Sans Serif", Font.PLAIN, 50));
+      selectLabel.setBorder(new EmptyBorder(70,0,70,0));
+      
+      storyButton = new DroneerMenuButton("Story");
+      arenaButton = new DroneerMenuButton("Arena");
+      
+      components.add(selectLabel);
+      components.add(storyButton);
+      components.add(arenaButton);
+      
+      for(JComponent c: components) {
+         c.setAlignmentX(Component.CENTER_ALIGNMENT);
+      }
       
       focused = false;
       
-      playButton.addActionListener(new ActionListener() {
+      storyButton.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
             focused = true;
          }
          
       });
-      add(droneerLabel);
-      add(playButton);
-      setVisible(true);
+      
+      add(selectLabel);
+      add(storyButton);
+      add(arenaButton);
    }
    
-   public void setFocused(boolean foc) {
-      focused = foc;
+   /**
+    * Sets the focused variable to a given value
+    * @param a The boolean value to set focused to 
+    */
+   
+   public void setFocused(boolean a) {
+      focused = a;
    }
+   
+   /**
+    * Returns whether the panel is focused or not
+    */
    
    public boolean getFocused() {
       return focused;
