@@ -3,10 +3,11 @@ package src;
 import java.io.*;
 
 /**
- * A text to java converter
+ * A text to java converter - DEPRECATED
  * @author Zübeyir Bodur
  * @version 1.5.2019
  */
+@Deprecated
 public class TextToJava
 {
    String code;
