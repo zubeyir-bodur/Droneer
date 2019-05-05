@@ -17,13 +17,13 @@ public class InteractionsPanel extends JPanel
     */
    public InteractionsPanel( String info)
    {
-      setPreferredSize( new Dimension(400, 200) );
-      setLayout( new BorderLayout() );
-      information = new JTextArea(info, 20, 30);
+      setPreferredSize( new Dimension(800, 200) );
+      setLayout( new FlowLayout() );
+      information = new JTextArea(info, 20, 70);
       information.setEditable(false);
       JScrollPane infoPane = new JScrollPane(information);
-      // infoPane.setPreferredSize( new Dimension(400, 200) );
-      add(infoPane, BorderLayout.CENTER);
+      infoPane.setPreferredSize( new Dimension(800, 200) );
+      add(infoPane);
       information.setFont( new Font( Font.MONOSPACED, Font.PLAIN, 14 ));
    }
    
