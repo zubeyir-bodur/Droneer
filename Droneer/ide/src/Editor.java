@@ -78,6 +78,8 @@ public class Editor extends JFrame{
         text = new JTextArea(20, 30);
         text.setFont( new Font( Font.MONOSPACED, Font.PLAIN, 14 ));
         textPane = new JScrollPane(text);
+        TextLineNumber textLineNumber = new TextLineNumber( text);
+        textPane.setRowHeaderView( textLineNumber);
         
         textPane.setPreferredSize( new Dimension(400,200) );
         this.add(BorderLayout.CENTER ,textPane);
