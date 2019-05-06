@@ -1,0 +1,11 @@
+package menus;
+
+import java.io.*;
+
+public class Idk {
+   
+   public Idk(File f) {
+      if (f.exists()) {System.out.println("asdasdasdasd");}
+   }
+   
+}
