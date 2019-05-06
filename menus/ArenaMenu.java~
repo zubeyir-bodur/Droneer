@@ -19,15 +19,14 @@ public class ArenaMenu extends Menu {
    private ArrayList<Menu> menus;
    private ArrayList<JComponent> components;
    private boolean focused;
-   private JLabel droneerLabel;
-   DroneerMenuButton playButton;
-   DroneerMenuButton designButton;
-   DroneerMenuButton helpButton;
-   DroneerMenuButton settingsButton;
-   DroneerMenuButton creditsButton;
-   DroneerMenuButton exitButton;
+   private JLabel explainLabel;
+   DroneerMenuButton beginnerButton;
+   DroneerMenuButton interButton;
+   DroneerMenuButton advancedButton;
+   DroneerMenuButton sandboxButton;
+   DroneerMenuButton backButton;
    
-   public ArenaMenu(ArrayList<Menu> menus) {
+   public ArenaMenu() {
       
       this.menus = menus;
       
@@ -36,29 +35,27 @@ public class ArenaMenu extends Menu {
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       
       // Block to set the label style
-      droneerLabel = new JLabel("DRONEER");
-      droneerLabel.setForeground(Color.WHITE);
-      droneerLabel.setFont(new Font("Monospaced", Font.PLAIN, 50));
-      droneerLabel.setBorder(new EmptyBorder(10,0,10,0));
+      explainLabel = new JLabel("Select an arena type");
+      explainLabel.setForeground(Color.WHITE);
+      explainLabel.setFont(new Font("Monospaced", Font.PLAIN, 35));
+      explainLabel.setBorder(new EmptyBorder(10,0,10,0));
       
       // Create the initialised buttons
-      playButton = new DroneerMenuButton("Play");
-      designButton = new DroneerMenuButton("Design");
-      helpButton = new DroneerMenuButton("Help");
-      settingsButton = new DroneerMenuButton("Settings");
-      creditsButton = new DroneerMenuButton("Credits");
-      exitButton = new DroneerMenuButton("Exit");
+      beginnerButton = new DroneerMenuButton("Beginner Cup");
+      interButton = new DroneerMenuButton("Intermediate Cup");
+      advancedButton = new DroneerMenuButton("Advanced Cup");
+      sandboxButton = new DroneerMenuButton("Sandbox");
+      backButton = new DroneerMenuButton("Back");
       
       // Add the components to an arraylist to quickly set the center alignment
-      components.add(droneerLabel);
-      components.add(playButton);
-      components.add(designButton);
-      components.add(helpButton);
-      components.add(settingsButton);
-      components.add(creditsButton);
-      components.add(exitButton);
+      components.add(explainLabel);
+      components.add(beginnerButton);
+      components.add(interButton);
+      components.add(advancedButton);
+      components.add(sandboxButton);
+      components.add(backButton);
       
-      exitButton.setMargin(new Insets(20,30,20,30));
+      backButton.setMargin(new Insets(20,30,20,30));
       
       for(JComponent c: components) {
          c.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -66,20 +63,12 @@ public class ArenaMenu extends Menu {
       
       focused = false;
       
-      playButton.addActionListener(new ActionListener() {
-         
-         public void actionPerformed(ActionEvent e) {
-            focused = true;
-         }
-         
-      });
-      add(droneerLabel);
-      add(playButton);
-      add(designButton);
-      add(helpButton);
-      add(settingsButton);
-      add(creditsButton);
-      add(exitButton);
+      add(explainLabel);
+      add(beginnerButton);
+      add(interButton);
+      add(advancedButton);
+      add(sandboxButton);
+      add(backButton);
    }
    
    /**

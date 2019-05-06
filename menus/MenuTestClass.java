@@ -19,15 +19,14 @@ public class MenuTestClass {
    static JFrame playMenuFrame = new JFrame("Play Menu");
    static JFrame designMenuFrame = new JFrame("Design Menu");
    static JFrame arenaMenuFrame = new JFrame("Arena Menu");
+   static JFrame droneSelectMenuFrame = new JFrame("Select Drones");
       
    static MainMenu mainMenuPanel = new MainMenu();
    static PlayMenu playMenuPanel = new PlayMenu();
    static DesignMenu designMenuPanel = new DesignMenu();
    static ArenaMenu arenaMenuPanel = new ArenaMenu();
+   static DroneSelectMenu droneSelectMenuPanel = new DroneSelectMenu();
    
-   public void testForFocus() {
-      
-   }
    public MenuTestClass() {
    }
    public MenuTestClass(MainMenu mainMenu) {
@@ -42,6 +41,7 @@ public class MenuTestClass {
    public MenuTestClass(ArenaMenu arenaMenu) {
       arenaMenuPanel = arenaMenu;
    }
+   public MenuTestClass(DroneSelectMenu droneSelectMenu) {}
    
    public static void main(String[] args) {
       
@@ -166,7 +166,9 @@ public class MenuTestClass {
       //******** ADD PANELS TO AN ARRAYLIST ********
       menus.add(mainMenuPanel);
       menus.add(playMenuPanel);
+      menus.add(designMenuPanel);
       menus.add(arenaMenuPanel);
+      menus.add(droneSelectMenuPanel);
       
       
       //******** ADD THE PANELS TO INDIVIDUAL FRAMES ********
@@ -174,12 +176,16 @@ public class MenuTestClass {
       playMenuFrame.add(playMenuPanel);
       designMenuFrame.add(designMenuPanel);
       arenaMenuFrame.add(arenaMenuPanel);
+      droneSelectMenuFrame.add(droneSelectMenuPanel);
       
       //******** ADD FRAMES TO ARRAYLIST ********
       frames.add(mainMenuFrame);
       frames.add(playMenuFrame);
       frames.add(designMenuFrame);
       frames.add(arenaMenuFrame);
+      frames.add(droneSelectMenuFrame);
+      
+      droneSelectMenuFrame.setVisible(true);
       
       for(JFrame f: frames) {
          f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

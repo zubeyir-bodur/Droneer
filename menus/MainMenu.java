@@ -39,7 +39,7 @@ public class MainMenu extends Menu {
       droneerLabel = new JLabel("DRONEER");
       droneerLabel.setForeground(Color.WHITE);
       droneerLabel.setFont(new Font("Monospaced", Font.PLAIN, 50));
-      droneerLabel.setBorder(new EmptyBorder(10,0,10,0));
+      droneerLabel.setBorder(new EmptyBorder(30,0,30,0));
       
       // Create the initialised buttons
       playButton = new DroneerMenuButton("Play");

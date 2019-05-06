@@ -35,7 +35,7 @@ public class DesignMenu extends Menu {
       
       focused = false;
       setVisible(true);
-      backButton = new DroneerMenuButton("Back");
+      backButton = new DroneerMenuButton("< Back");
       textPanel = new JPanel();
       backPanel = new JPanel();
       

@@ -39,7 +39,7 @@ public class PlayMenu extends Menu {
       
       storyButton = new DroneerMenuButton("Story");
       arenaButton = new DroneerMenuButton("Arena");
-      backButton = new DroneerMenuButton("Back");
+      backButton = new DroneerMenuButton("< Back");
       
       components.add(selectLabel);
       components.add(storyButton);

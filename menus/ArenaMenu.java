@@ -38,14 +38,14 @@ public class ArenaMenu extends Menu {
       explainLabel = new JLabel("Select an arena type");
       explainLabel.setForeground(Color.WHITE);
       explainLabel.setFont(new Font("Monospaced", Font.PLAIN, 35));
-      explainLabel.setBorder(new EmptyBorder(10,0,10,0));
+      explainLabel.setBorder(new EmptyBorder(50,0,70,0));
       
       // Create the initialised buttons
       beginnerButton = new DroneerMenuButton("Beginner Cup");
       interButton = new DroneerMenuButton("Intermediate Cup");
       advancedButton = new DroneerMenuButton("Advanced Cup");
       sandboxButton = new DroneerMenuButton("Sandbox");
-      backButton = new DroneerMenuButton("Back");
+      backButton = new DroneerMenuButton("< Back");
       
       // Add the components to an arraylist to quickly set the center alignment
       components.add(explainLabel);

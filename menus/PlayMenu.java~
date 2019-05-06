@@ -22,8 +22,9 @@ public class PlayMenu extends Menu {
    private JLabel selectLabel;
    DroneerMenuButton storyButton;
    DroneerMenuButton arenaButton;
+   DroneerMenuButton backButton;
    
-   public PlayMenu(ArrayList<Menu> menus) {
+   public PlayMenu() {
       
       this.menus = menus;
       components = new ArrayList<JComponent>();
@@ -38,10 +39,12 @@ public class PlayMenu extends Menu {
       
       storyButton = new DroneerMenuButton("Story");
       arenaButton = new DroneerMenuButton("Arena");
+      backButton = new DroneerMenuButton("Back");
       
       components.add(selectLabel);
       components.add(storyButton);
       components.add(arenaButton);
+      components.add(backButton);
       
       for(JComponent c: components) {
          c.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -57,9 +60,12 @@ public class PlayMenu extends Menu {
          
       });
       
+      backButton.setMargin(new Insets(20,30,20,30));
+      
       add(selectLabel);
       add(storyButton);
       add(arenaButton);
+      add(backButton);
    }
    
    /**

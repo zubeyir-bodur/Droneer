@@ -27,7 +27,7 @@ public class MainMenu extends Menu {
    DroneerMenuButton creditsButton;
    DroneerMenuButton exitButton;
    
-   public MainMenu(ArrayList<Menu> menus) {
+   public MainMenu() {
       
       this.menus = menus;
       
