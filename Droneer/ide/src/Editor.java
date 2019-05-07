@@ -9,8 +9,8 @@ import java.io.*;
 
 /*
  * Simple Editor class for writing code with several features
- * @author - Uður Erdem Seyfi, Zübeyir Bodur
- * @version - 06.05.2019
+ * @author - UÄŸur Erdem Seyfi, ZÃ¼beyir Bodur
+ * @version - 07.05.2019
  */
 public class Editor extends JFrame
 {
@@ -247,7 +247,7 @@ public class Editor extends JFrame
                             interactionsPanel.update("Compilation successful!");
                          
                         else
-                            interactionsPanel.update("Compilation errors found : \n" + compiler.getDiagnosticsInfo() );
+                            interactionsPanel.update("Compile errors found in : \n" + compiler.getDiagnosticsInfo() );
                     } catch ( Exception exc ) {
                     	JOptionPane.showMessageDialog(null, exc.getMessage()); 
                     }    
@@ -281,17 +281,17 @@ public class Editor extends JFrame
     class ChangeListener implements DocumentListener {
         public void removeUpdate(DocumentEvent e) {
             hasChanged = true;
-            setTitle( dir + "\\" + filename + "*");
+            setTitle( dir + "\\" + filename + " *");
             save.setEnabled(true);
         }
         public void insertUpdate(DocumentEvent e) {
             hasChanged = true;
-            setTitle( dir + "\\" + filename + "*");
+            setTitle( dir + "\\" + filename + " *");
             save.setEnabled(true);
         }
         public void changedUpdate(DocumentEvent e) {
             hasChanged = true;
-            setTitle( dir + "\\" + filename + "*");
+            setTitle( dir + "\\" + filename + " *");
             save.setEnabled(true);
         }
     }
