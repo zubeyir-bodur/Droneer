@@ -9,9 +9,18 @@ import java.io.*;
 
 /*
  * Simple Editor class for writing code with several features
+ * <p> 1. Save button gets disabled after the file is saved, 
+ * gets enabled after a change is made in the text area.
+ * <p> 2. If the file is not saved and compilation is attempted, 
+ * a JOptionPane comes up, asks to user if they want to save&compile
+ * the file or not.
+ * <p> 3. When the file is being saved, or a file is being opened,
+ * the directory user recently chose is remembered. This directory 
+ * will be used in the next open & save as options.
  * @author - Uğur Erdem Seyfi, Zübeyir Bodur
  * @version - 07.05.2019
  */
+@SuppressWarnings("serial")
 public class Editor extends JFrame
 {
     JMenuBar menuBar; // will be added
@@ -37,17 +46,16 @@ public class Editor extends JFrame
     {
         setPreferredSize( new Dimension(800,600) );
         setLayout( new BorderLayout() );
-        setTitle( "(Untitled)" );
         
         filename = "";
         dir = "";
         hasChanged = false;
-        dontShow = Boolean.parseBoolean( getData("dontshow.txt") );
+        dontShow = Boolean.parseBoolean( getData(System.getProperty("user.dir") + "\\src\\ide\\dontshow.txt") );
         
         fileChooser = new JFileChooser();
         // Set the default directory, as where user left
-        if ( !getData("directory.txt").equals("") )
-            fileChooser.setCurrentDirectory( new File(getData("directory.txt") ) );
+        if ( !getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt").equals("") )
+            fileChooser.setCurrentDirectory( new File(getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt") ) );
         
         fileNameFilter = new FileNameExtensionFilter("Java files", "java");
         fileChooser.setFileFilter( fileNameFilter);
@@ -59,7 +67,7 @@ public class Editor extends JFrame
         
         // creating menus for menu bar
         save    = new JButton("Save");
-        saveAs  = new JButton("Save as");
+        saveAs  = new JButton("Save As");
         open    = new JButton("Open");
         compile = new JButton("Compile");
         run     = new JButton("Run");
@@ -98,7 +106,7 @@ public class Editor extends JFrame
         interactionsPanel = new InteractionsPanel( "Welcome to Droneer. Current file directory is : " 
                                                       + dir + "\\" + filename);
         this.add(BorderLayout.SOUTH, interactionsPanel);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     /*
@@ -129,7 +137,7 @@ public class Editor extends JFrame
             		soFar = soFar + line + "\n";
             }
             if ( lineCount > 1)
-            	soFar = soFar.substring( soFar.length() - 2);
+            	soFar = soFar.substring( 0, soFar.length() - 1);
             
             bufferedReader.close();
             return soFar;
@@ -166,7 +174,7 @@ public class Editor extends JFrame
             int response = fileChooser.showOpenDialog( Editor.this);
             if (response == JFileChooser.APPROVE_OPTION) 
             {
-                saveDataAs(fileChooser.getCurrentDirectory() + "", "directory.txt");
+                saveDataAs(fileChooser.getCurrentDirectory() + "", System.getProperty("user.dir") + "\\src\\ide\\directory.txt");
                 text.setText( getData( fileChooser.getSelectedFile().getAbsolutePath() ) );
 
                 // Set the text to what is read from the file and update info
@@ -174,11 +182,6 @@ public class Editor extends JFrame
                 dir = fileChooser.getCurrentDirectory() + "";
                 setTitle( dir + "\\" + filename); 
                 hasChanged = false;
-            }
-            else if ( response == JFileChooser.CANCEL_OPTION )
-            {
-                filename = "";
-                dir = "";
             }
         }
     }
@@ -268,7 +271,7 @@ public class Editor extends JFrame
 
                  // Update the dontShow data in Droneer/dontshow.txt
                 dontShow = checkbox.isSelected();
-                saveDataAs(dontShow + "", "dontshow.txt");
+                saveDataAs(dontShow + "", System.getProperty("user.dir") + "\\src\\ide\\dontshow.txt");
                 if ( desire == JOptionPane.OK_OPTION)
                 {
                     save.doClick();
@@ -289,10 +292,6 @@ public class Editor extends JFrame
             setTitle( dir + "\\" + filename + " *");
             save.setEnabled(true);
         }
-        public void changedUpdate(DocumentEvent e) {
-            hasChanged = true;
-            setTitle( dir + "\\" + filename + " *");
-            save.setEnabled(true);
-        }
+        public void changedUpdate(DocumentEvent e) {}
     }
 }
