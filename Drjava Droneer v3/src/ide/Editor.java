@@ -1,4 +1,5 @@
 package ide;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -22,7 +23,7 @@ import java.io.*;
 @SuppressWarnings("serial")
 public class Editor extends JPanel
 {
-    JMenuBar menuBar; // will be added
+    //JMenuBar menuBar; // will be added
     JToolBar toolBar;
     JButton save, saveAs, open, compile, run, undo, redo, help;
     String filename, dir;
@@ -45,11 +46,10 @@ public class Editor extends JPanel
     {
         setPreferredSize( new Dimension(800,600) );
         setLayout( new BorderLayout() );
-        //setTitle("(Untitled)");
-        filename = "(Untitled)";
+        filename = "";
         dir = "";
         hasChanged = false;
-        //dontShow = Boolean.parseBoolean( getData(System.getProperty("user.dir") + "\\src\\ide\\dontshow.txt") );
+        dontShow = Boolean.parseBoolean( getData(System.getProperty("user.dir") + "\\src\\ide\\dontshow.txt") );
         
         fileChooser = new JFileChooser();
         // Set the default directory, as where user left
@@ -63,7 +63,7 @@ public class Editor extends JPanel
         fileChooser.setFileFilter( fileNameFilter);
         
         // creating menu bar
-        menuBar = new JMenuBar();
+//        menuBar = new JMenuBar();
         toolBar = new JToolBar();
         toolBar.setFloatable( false);
         
@@ -108,7 +108,6 @@ public class Editor extends JPanel
         interactionsPanel = new InteractionsPanel( "Welcome to Droneer. Current file directory is : " 
                                                       + dir );
         this.add(BorderLayout.SOUTH, interactionsPanel);
-        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     /*
@@ -182,7 +181,6 @@ public class Editor extends JPanel
                 // Set the text to what is read from the file and update info
                 filename = fileChooser.getSelectedFile().getName();
                 dir = fileChooser.getCurrentDirectory() + "";
-                //setTitle( dir + "\\" + filename); 
                 hasChanged = false;
                 interactionsPanel.update("Welcome to Droneer. Current file directory is: " + dir);
             }
@@ -198,7 +196,7 @@ public class Editor extends JPanel
         public void actionPerformed(ActionEvent e)
         {
             // If a file has not been selected yet, then call saveAs action listener
-            if( filename.equals("(Untitled)") )
+            if( filename.equals("") )
                 saveAs.doClick();
             
             else
@@ -206,7 +204,6 @@ public class Editor extends JPanel
              saveDataAs(text.getText(), dir + "\\" + filename);
              hasChanged = false;
              save.setEnabled(false);
-             //setTitle( dir + "\\" + filename);
             }
         }
     }
@@ -227,8 +224,7 @@ public class Editor extends JPanel
                 dir = fileChooser.getCurrentDirectory() + "";
                 saveDataAs(text.getText(), dir + "\\" + filename);
                 hasChanged = false;
-             save.setEnabled(false);
-             //setTitle( dir + "\\" + filename);
+                save.setEnabled(false);
             } 
         }
     }
@@ -241,7 +237,7 @@ public class Editor extends JPanel
     {
         public void actionPerformed(ActionEvent e)
         {
-            if ( filename.equals("(Untitled)") )
+            if ( filename.equals("") )
                 JOptionPane.showMessageDialog(null, "You must first open a java file in order to compile it.");
             
             else if ( !hasChanged )
@@ -287,18 +283,10 @@ public class Editor extends JPanel
     class ChangeListener implements DocumentListener {
         public void removeUpdate(DocumentEvent e) {
             hasChanged = true;
-            if (filename.equals("(Untitled)"))
-             //setTitle("(Untitled) *");
-            //else
-             //setTitle( dir + "\\" + filename + " *");
             save.setEnabled(true);
         }
         public void insertUpdate(DocumentEvent e) {
-         hasChanged = true;
-            if (filename.equals("(Untitled)"))
-             //setTitle("(Untitled) *");
-            //else
-             //setTitle( dir + "\\" + filename + " *");
+            hasChanged = true;
             save.setEnabled(true);
         }
         public void changedUpdate(DocumentEvent e) {}
