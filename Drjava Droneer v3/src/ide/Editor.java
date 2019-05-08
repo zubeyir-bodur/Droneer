@@ -6,6 +6,7 @@ import javax.swing.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.*;
 import java.io.*;
+import javax.swing.undo.UndoManager;
 
 /*
  * Simple Editor class for writing code with several features
@@ -33,6 +34,8 @@ public class Editor extends JPanel
     
     InteractionsPanel interactionsPanel;
     
+    UndoManager editManager;
+    
     JFileChooser fileChooser;
     FileNameExtensionFilter fileNameFilter;
     
@@ -47,23 +50,26 @@ public class Editor extends JPanel
         setPreferredSize( new Dimension(800,600) );
         setLayout( new BorderLayout() );
         filename = "";
-        dir = "";
+//        dir = "";
         hasChanged = false;
         dontShow = Boolean.parseBoolean( getData(System.getProperty("user.dir") + "\\src\\ide\\dontshow.txt") );
         
         fileChooser = new JFileChooser();
-        // Set the default directory, as where user left
-        if ( !getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt").equals("") )
-        {
-            fileChooser.setCurrentDirectory( new File(getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt") ) );
-            dir = fileChooser.getCurrentDirectory() + "";
-        }
+        // Uncomment this if you want to generalize the use of ide
+//        if ( !getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt").equals("") )
+//        {
+//            fileChooser.setCurrentDirectory( new File(getData(System.getProperty("user.dir") + "\\src\\ide\\directory.txt") ) );
+//            dir = fileChooser.getCurrentDirectory() + "";
+//        }
+        fileChooser.setCurrentDirectory( new File(System.getProperty("user.dir") + "\\src\\drones") );
         
         fileNameFilter = new FileNameExtensionFilter("Java files", "java");
         fileChooser.setFileFilter( fileNameFilter);
         
+        editManager = new UndoManager();
+        
         // creating menu bar
-//        menuBar = new JMenuBar();
+        //  menuBar = new JMenuBar();
         toolBar = new JToolBar();
         toolBar.setFloatable( false);
         
@@ -72,7 +78,7 @@ public class Editor extends JPanel
         saveAs  = new JButton("Save As");
         open    = new JButton("Open");
         compile = new JButton("Compile");
-        run     = new JButton("Run");
+//        run     = new JButton("Run");
         undo    = new JButton("Undo");
         redo    = new JButton("Redo");
         help    = new JButton("Help");
@@ -82,7 +88,7 @@ public class Editor extends JPanel
         toolBar.add( saveAs);
         toolBar.add( open);
         toolBar.add( compile);
-        toolBar.add( run);
+//        toolBar.add( run);
         toolBar.add( undo);
         toolBar.add( redo);
         toolBar.add( help);
@@ -92,6 +98,12 @@ public class Editor extends JPanel
         save.addActionListener( new SaveListener() );
         saveAs.addActionListener( new SaveAsListener() );
         compile.addActionListener( new CompileListener() );
+        undo.addActionListener( new UndoListener() );
+        redo.addActionListener( new RedoListener() );
+        
+        // undo & redo is initially disabled
+        undo.setEnabled(false);
+        redo.setEnabled(false);
         
         this.add(BorderLayout.NORTH , toolBar);
         
@@ -105,6 +117,7 @@ public class Editor extends JPanel
         this.add(BorderLayout.CENTER ,textPane);
         
         text.getDocument().addDocumentListener(new ChangeListener() );
+        text.getDocument().addUndoableEditListener(new DocumentComingUndone() );
         interactionsPanel = new InteractionsPanel( "Welcome to Droneer. Current file directory is : " 
                                                       + dir );
         this.add(BorderLayout.SOUTH, interactionsPanel);
@@ -119,6 +132,12 @@ public class Editor extends JPanel
         this();
         this.filename = droneName;
         // this.dir = "";
+    }
+    
+    private void updateURButtons()
+    {
+        undo.setEnabled( editManager.canUndo() );
+        redo.setEnabled( editManager.canUndo() );
     }
     
     private String getData( String filename) 
@@ -290,5 +309,28 @@ public class Editor extends JPanel
             save.setEnabled(true);
         }
         public void changedUpdate(DocumentEvent e) {}
+    }
+    
+    class UndoListener implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            if ( editManager.canUndo() )
+                editManager.undo();
+            updateURButtons();
+        }
+    }
+    
+    class RedoListener implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            if ( editManager.canRedo() )
+                editManager.redo();
+            updateURButtons();
+        }
+    }
+    
+    class DocumentComingUndone implements UndoableEditListener {
+        public void undoableEditHappened( UndoableEditEvent e) {
+            editManager.addEdit(e.getEdit() );
+            updateURButtons();
+        }
     }
 }
