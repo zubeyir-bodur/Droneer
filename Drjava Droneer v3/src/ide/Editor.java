@@ -152,12 +152,14 @@ public class Editor extends JPanel
             {
              lineCount++;
              if ( lineCount == 1 )
-              soFar = soFar + line;
+                 soFar = soFar + line;
+             else if ( lineCount == 2 )
+                 soFar = soFar + "\n" + line + "\n";
              else
-              soFar = soFar + line + "\n";
+                 soFar = soFar + line + "\n";
             }
             if ( lineCount > 1)
-             soFar = soFar.substring( 0, soFar.length() - 1);
+                soFar = soFar.substring( 0, soFar.length() - 1);
             
             bufferedReader.close();
             return soFar;
