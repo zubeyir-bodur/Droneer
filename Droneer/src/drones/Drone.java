@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +49,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @return the angle of the drone.
     */
-   public double getAngle() {
+   public final double getAngle() {
       return angle;
    }
 
@@ -59,14 +58,14 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @return the health of the drone.
     */
-   public int getHealth() {
+   public final int getHealth() {
       return health;
    }
    
    /**
     * Is called when the drone is hit, decrements health by 10.
     */
-   public void hit() {
+   final void hit() {
       health -= 10;
       System.out.println("ouch");
       if (health <= 0) {
@@ -79,7 +78,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @param distance The distance the drone will travel
     */
-   public void move(int distance) {
+   public final void move(int distance) {
       
       if (running) {
          if (distance > 0) {
@@ -111,7 +110,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @param degrees The amount of degrees that the drone will turn
     */
-   public void turn(int degrees) {
+   public final void turn(int degrees) {
       
 //      angle = angle % (Math.PI * 2);
       
@@ -166,7 +165,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * @param height The height of the board
     * @return true if the ellipse is in front of the drone, false if not.
     */
-   public boolean scan(Ellipse2D.Double e, int width, int height) {
+   public final boolean scan(Ellipse2D.Double e, int width, int height) {
       return getIntersection(e, width, height) != null;
    }
    
@@ -178,7 +177,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * @param height The height of the board
     * @return The intersection point of the line of sight of the drone and the ellipse that is chosen.
     */
-   public Point getIntersection(Ellipse2D.Double e, int width, int height) {
+   public final Point getIntersection(Ellipse2D.Double e, int width, int height) {
       
       Point result; 
       
@@ -207,6 +206,8 @@ public abstract class Drone extends Sprite implements Runnable {
       double xA = 0;
       double yA = yD - mP * xD;
 
+      // -------------------------------------- CHANGE HERE ---------------------------------------
+      // Tried to see if the ellipse is on the back or on the front but failed
 //      if ((xE - xA) * (yD - yA) - (yE - yA) * (xD - xA) < 0) {
 
          // a, b, c in a*x^2+b*x+c = 0
@@ -250,6 +251,7 @@ public abstract class Drone extends Sprite implements Runnable {
 
             result = new Point((int) (xI + xE), (int) (yI + yE));
          }
+         // ------------------------------------- CHANGE HERE --------------------------------------
 //      } else {
 //         
 //         distance = -1;
@@ -265,14 +267,14 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @return The distance between the front of the drone and the nearest obstacle.
     */
-   public double getDistance() {
+   public final double getDistance() {
       return distance;
    }
    
    /**
     * Fire a laser by adding it to the lasers list.
     */
-   public void fire() {
+   public final void fire() {
       if (System.currentTimeMillis() - lastFired > COOLDOWN) {
          
          lasers.add(new Laser(x + r/2, y + r/2, angle));
@@ -285,7 +287,7 @@ public abstract class Drone extends Sprite implements Runnable {
     * 
     * @return the list of lasers.
     */
-   public List<Laser> getLasers() {
+   public final List<Laser> getLasers() {
       return lasers;
    }
    
@@ -294,6 +296,9 @@ public abstract class Drone extends Sprite implements Runnable {
     */
    public abstract void onScannedDrone();
    
+   /**
+    * Is called when a border is hit.
+    */
    public abstract void onHitBorder();
    
 //   /**

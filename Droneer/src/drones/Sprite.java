@@ -51,7 +51,7 @@ public class Sprite {
     * 
     * @return the x location of the sprite.
     */
-   public double getX() {
+   public final double getX() {
       return x;
    }
    
@@ -60,7 +60,7 @@ public class Sprite {
     * 
     * @return the y location of the sprite.
     */
-   public double getY() {
+   public final double getY() {
       return y;
    }
    
@@ -69,7 +69,7 @@ public class Sprite {
     * 
     * @return the radius of the hitbox.
     */
-   public int getR() {
+   public final int getR() {
       return r;
    }
    
@@ -78,7 +78,7 @@ public class Sprite {
     * 
     * @return true if the sprite is visible, false if not.
     */
-   public boolean isVisible() {
+   public final boolean isVisible() {
       return visible;
    }
    
@@ -87,7 +87,7 @@ public class Sprite {
     * 
     * @param visible If true the sprite is visible, not if false
     */
-   void setVisible(boolean visible) {
+   final void setVisible(boolean visible) {
       this.visible = visible;
    }
    
@@ -96,7 +96,7 @@ public class Sprite {
     * 
     * @param d The new x location
     */
-   void setX(double d) {
+   final void setX(double d) {
       x = d;
    }
    
@@ -105,7 +105,7 @@ public class Sprite {
     * 
     * @param d The new y location
     */
-   void setY(double d) {
+   final void setY(double d) {
       y = d;
    }
    
@@ -114,7 +114,7 @@ public class Sprite {
     * 
     * @return the hitbox of the sprite.
     */
-   public Ellipse2D.Double getHitbox() {
+   public final Ellipse2D.Double getHitbox() {
       return new Ellipse2D.Double(x, y, r, r);
    } 
 }
