@@ -10,21 +10,14 @@ import javax.swing.undo.UndoManager;
 
 /*
  * Simple Editor class for writing code with several features
- * <p> 1. Save button gets disabled after the file is saved, 
- * gets enabled after a change is made in the text area.
- * <p> 2. If the file is not saved and compilation is attempted, 
- * a JOptionPane comes up, asks to user if they want to save&compile
- * the file or not.
- * <p> 3. When the file is being saved, or a file is being opened,
- * the directory user recently chose is remembered. This directory 
- * will be used in the next open & save as options.
  * @author - Uður Erdem Seyfi, Zübeyir Bodur
- * @version - 07.05.2019
+ * @version - 10.05.2019
  */
+
 @SuppressWarnings("serial")
 public class Editor extends JPanel
 {
-	//JMenuBar menuBar; // will be added
+	//JMenuBar menuBar; // might be added
 	JToolBar toolBar;
 	JButton save, saveAs, open, compile, run, undo, redo, help;
 	String filename, dir;
@@ -40,7 +33,7 @@ public class Editor extends JPanel
 	FileNameExtensionFilter fileNameFilter;
 
 	boolean hasChanged, dontShow; // states if the user implemented something but did not save it
-								  // states whether user wants to see the unsaved message warning again 
+								  // states whether user wants to see the unsaved message warning again
 
 	/*
 	 * Default constructor
@@ -51,22 +44,20 @@ public class Editor extends JPanel
 		setLayout( new BorderLayout() );
 		
 		filename = "";
-		dir = "";
+		dir = "src\\examples";
 		hasChanged = false;
-		dontShow = Boolean.parseBoolean( getData("src/ide/dontshow.txt") );
+		dontShow = Boolean.parseBoolean( getData("src\\ide\\dontshow.txt") );
 
 		fileChooser = new JFileChooser();
-		fileChooser.setCurrentDirectory( new File("src/drones") );
+		fileChooser.setCurrentDirectory( new File("src\\examples") );
 		fileNameFilter = new FileNameExtensionFilter("Java files", "java");
 		fileChooser.setFileFilter( fileNameFilter);
 
 		editManager = new UndoManager();
 
-		// creating menu bar
-		// menuBar = new JMenuBar();
+		// creating tool bar
 		toolBar = new JToolBar();
 		toolBar.setFloatable( false);
-		// creating menus for menu bar
 		save    = new JButton("Save");
 		saveAs  = new JButton("Save As");
 		open    = new JButton("Open");
@@ -85,21 +76,178 @@ public class Editor extends JPanel
 		toolBar.add( undo);
 		toolBar.add( redo);
 		toolBar.add( help);
+		
+		
+		/*************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO SAVE BUTTON**
+		 *************************************************/
+		Action saveAct = new AbstractAction("Save") {
 
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	// If a file has not been selected yet, then call saveAs action listener
+				if( filename.equals("") )
+					saveAs.doClick();
+				else
+				{   
+					// Save the file to the current directory
+					saveDataAs(text.getText(), dir + "\\" + filename);
+					hasChanged = false;
+					save.setEnabled(false);
+				}
+		    }
+
+		};
+		saveAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+		save.setAction(saveAct);
+		save.getActionMap().put("saveAction", saveAct);
+		save.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        (KeyStroke) saveAct.getValue(Action.ACCELERATOR_KEY), "saveAction");
+		
+		/*************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO UNDO BUTTON**
+		 *************************************************/
+		Action undoAct = new AbstractAction("Undo") {
+
+		    @Override
+		    public void actionPerformed( ActionEvent e)
+			{
+				if ( editManager.canUndo() )
+					editManager.undo();
+				updateURButtons();
+			}
+
+		};
+		undoAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK));
+		undo.setAction(undoAct);
+		undo.getActionMap().put("undoAction", undoAct);
+		undo.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        (KeyStroke) undoAct.getValue(Action.ACCELERATOR_KEY), "undoAction");
+		
+		/*************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO REDO BUTTON**
+		 *************************************************/
+		Action redoAct = new AbstractAction("Redo") {
+
+		    @Override
+		    public void actionPerformed( ActionEvent e)
+			{
+				if ( editManager.canRedo() )
+					editManager.redo();
+				updateURButtons();
+			}
+
+		};
+		redoAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Y, InputEvent.CTRL_MASK));
+		redo.setAction(redoAct);
+		redo.getActionMap().put("redoAction", redoAct);
+		redo.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        (KeyStroke) redoAct.getValue(Action.ACCELERATOR_KEY), "redoAction");
+		
+		/*************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO OPEN BUTTON**
+		 *************************************************/
+		Action openAct = new AbstractAction("Open") {
+
+		    @Override
+		    public void actionPerformed( ActionEvent e)
+			{
+		    	// Demonstrate "Open" dialog:
+				int response = fileChooser.showOpenDialog(null);
+				if (response == JFileChooser.APPROVE_OPTION) 
+				{
+					// Set the text to what is read from the file and update info
+					text.setText( getData( fileChooser.getSelectedFile().getAbsolutePath() ) );
+					filename = fileChooser.getSelectedFile().getName();
+					dir = fileChooser.getCurrentDirectory() + "";
+					fileChooser.setCurrentDirectory( new File(dir) );
+					hasChanged = false;
+					interactionsPanel.update("Welcome to Droneer. Current file directory is: " + System.getProperty("user.dir") + "\\" +  dir );
+				}
+				
+				// bug fix, discard all edits in UndoManager, have the scroll pane go to top.
+				editManager.discardAllEdits();
+				updateURButtons();
+				text.setCaretPosition(0);
+			}
+
+		};
+		openAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		open.setAction(openAct);
+		open.getActionMap().put("openAction", openAct);
+		open.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        (KeyStroke) openAct.getValue(Action.ACCELERATOR_KEY), "openAction");
+		
+		/****************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO COMPILE BUTTON**
+		 ****************************************************/
+		Action compileAct = new AbstractAction("Compile") {
+
+		    @Override
+		    public void actionPerformed( ActionEvent e)
+			{
+		    	if ( filename.equals("") )
+					JOptionPane.showMessageDialog(null, "You must first open a java file in order to compile it.");
+
+				else if ( !hasChanged )
+				{
+					DroneCompiler compiler = new DroneCompiler();
+					try {
+						if( compiler.compile( dir + "\\" + filename) )
+							interactionsPanel.update("Compilation successful!");
+						else
+							interactionsPanel.update("Compile errors found in : \n" + compiler.getDiagnosticsInfo() );
+					} catch ( Exception exc ) {
+						JOptionPane.showMessageDialog(null, exc.getMessage()); 
+					}    
+				}
+				else if ( dontShow )
+				{
+					save.doClick();
+					compile.doClick();
+				}
+				else
+				{
+					JCheckBox checkbox = new JCheckBox("Don't show this message again.");
+					Object[] params = { "Current file is not saved."
+							+ " You need to save it before compiling."
+							+ " Click OK to save&compile the file.", checkbox};
+					int desire = JOptionPane.showConfirmDialog( null, params, "Unsaved File",
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
+					// Update the dontShow data in Droneer\dontshow.txt
+					dontShow = checkbox.isSelected();
+					saveDataAs(dontShow + "", "src\\ide\\dontshow.txt");
+					if ( desire == JOptionPane.OK_OPTION)
+					{
+						save.doClick();
+						compile.doClick();
+					}
+				}
+			}
+
+		};
+		// Uncomment the following and comment the uncommented ones to make the hotkey (currently F5) Ctrl + B
+//		compileAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK));
+		compileAct.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
+		compile.setAction(compileAct);
+		compile.getActionMap().put("compileAction", compileAct);
+		compile.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "compileAction");
+//		compile.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+//		        (KeyStroke) compileAct.getValue(Action.ACCELERATOR_KEY), "compileAction");
+		
+		
+		
 		// adding listeners to buttons
-		open.addActionListener( new OpenListener() );
-		save.addActionListener( new SaveListener() );
 		saveAs.addActionListener( new SaveAsListener() );
-		compile.addActionListener( new CompileListener() );
-		undo.addActionListener( new UndoListener() );
-		redo.addActionListener( new RedoListener() );
 		// undo & redo is initially disabled
 		undo.setEnabled(false);
 		redo.setEnabled(false);
 
-
 		text = new JTextArea(20, 30);
 		text.setFont( new Font( Font.MONOSPACED, Font.PLAIN, 14 ));
+		text.setTabSize(4);
 		textPane = new JScrollPane(text);
 		TextLineNumber textLineNumber = new TextLineNumber( text);
 		textPane.setRowHeaderView( textLineNumber);
@@ -108,7 +256,7 @@ public class Editor extends JPanel
 		text.getDocument().addUndoableEditListener(new DocumentComingUndone() );
 		
 		
-		interactionsPanel = new InteractionsPanel( "Welcome to Droneer. Current file directory is : " + dir );
+		interactionsPanel = new InteractionsPanel( "Welcome to Droneer. Current file directory is : " + System.getProperty("user.dir") + "\\" + dir );
 		
 		add(BorderLayout.SOUTH, interactionsPanel);
 		add(BorderLayout.NORTH , toolBar);
@@ -149,7 +297,7 @@ public class Editor extends JPanel
 			return null;
 		}
 	}
-
+	
 	private void saveDataAs( String dataS, String filename) 
 	{
 		File data = new File( filename);
@@ -161,57 +309,7 @@ public class Editor extends JPanel
 			bWriter.close(); 
 		} catch (Exception exc) {
 			JOptionPane.showMessageDialog(null, exc.getMessage());
-		}
-	}
-
-
-	/*
-	 * Action listener for open button
-	 * Opens a file
-	 */
-	class OpenListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			// Demonstrate "Open" dialog:
-			int response = fileChooser.showOpenDialog(null);
-			if (response == JFileChooser.APPROVE_OPTION) 
-			{
-				// Set the text to what is read from the file and update info
-				text.setText( getData( fileChooser.getSelectedFile().getAbsolutePath() ) );
-				filename = fileChooser.getSelectedFile().getName();
-				dir = fileChooser.getCurrentDirectory() + "";
-				fileChooser.setCurrentDirectory( new File(dir) );
-				hasChanged = false;
-				interactionsPanel.update("Welcome to Droneer. Current file directory is: " + dir);
-			}
-			
-			// bug fix, discard all edits in UndoManager
-			editManager.discardAllEdits();
-			updateURButtons();
-		}
-	}
-
-	/*
-	 * Action listener for save button
-	 * writes the text info to the saved file
-	 */
-	class SaveListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			// If a file has not been selected yet, then call saveAs action listener
-			if( filename.equals("") )
-				saveAs.doClick();
-
-			else
-			{   
-				// Save the file to the current directory
-				saveDataAs(text.getText(), dir + "/" + filename);
-				hasChanged = false;
-				save.setEnabled(false);
-			}
-		}
+		}			
 	}
 
 	/*
@@ -228,59 +326,10 @@ public class Editor extends JPanel
 				// Set the label, file name and directory properties, then save the data at those properties
 				filename = fileChooser.getSelectedFile().getName();
 				dir = fileChooser.getCurrentDirectory() + "";
-				saveDataAs(text.getText(), dir + "/" + filename);
+				saveDataAs(text.getText(), dir + "\\" + filename);
 				hasChanged = false;
 				save.setEnabled(false);
 			} 
-		}
-	}
-
-	/*
-	 * Action listener for the compile button
-	 * Compiles the current file
-	 */
-	class CompileListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			if ( filename.equals("") )
-				JOptionPane.showMessageDialog(null, "You must first open a java file in order to compile it.");
-
-			else if ( !hasChanged )
-			{
-				DroneCompiler compiler = new DroneCompiler();
-				try {
-					if( compiler.compile( dir + "/" + filename) )
-						interactionsPanel.update("Compilation successful!");
-					else
-						interactionsPanel.update("Compile errors found in : \n" + compiler.getDiagnosticsInfo() );
-				} catch ( Exception exc ) {
-					JOptionPane.showMessageDialog(null, exc.getMessage()); 
-				}    
-			}
-			else if ( dontShow )
-			{
-				save.doClick();
-				compile.doClick();
-			}
-			else
-			{
-				JCheckBox checkbox = new JCheckBox("Don't show this message again.");
-				Object[] params = { "Current file is not saved."
-						+ " You need to save it before compiling."
-						+ " Click OK to save&compile the file.", checkbox};
-				int desire = JOptionPane.showConfirmDialog( null, params, "Unsaved File",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-
-				// Update the dontShow data in Droneer\dontshow.txt
-				dontShow = checkbox.isSelected();
-				saveDataAs(dontShow + "", "src/ide/dontshow.txt");
-				if ( desire == JOptionPane.OK_OPTION)
-				{
-					save.doClick();
-					compile.doClick();
-				}
-			}
 		}
 	}
 
@@ -298,26 +347,6 @@ public class Editor extends JPanel
 			save.setEnabled(true);
 		}
 		public void changedUpdate(DocumentEvent e) {}
-	}
-
-	class UndoListener implements ActionListener 
-	{
-		public void actionPerformed( ActionEvent e)
-		{
-			if ( editManager.canUndo() )
-				editManager.undo();
-			updateURButtons();
-		}
-	}
-
-	class RedoListener implements ActionListener 
-	{
-		public void actionPerformed( ActionEvent e) 
-		{
-			if ( editManager.canRedo() )
-				editManager.redo();
-			updateURButtons();
-		}
 	}
 
 	class DocumentComingUndone implements UndoableEditListener 
