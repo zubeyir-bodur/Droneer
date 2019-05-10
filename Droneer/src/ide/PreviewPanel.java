@@ -1,10 +1,6 @@
 package ide;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-//import droneer.drone.*;
-//import droneer.battle.*;
 
 /**
  * UNDER CONSTRUCTION - PLZ DONT INITIALIZE

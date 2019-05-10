@@ -1,5 +1,4 @@
 package drones;
-
 import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import javax.swing.ImageIcon;
@@ -12,11 +11,10 @@ import javax.swing.ImageIcon;
  */
 public class Sprite {
    
-   protected int x;
-   protected int y;
+   protected double x;
+   protected double y;
    protected int r; // the radius of the hitbox
    protected boolean visible;
-   protected boolean hit;
    protected Image image;
    
    /**
@@ -26,7 +24,7 @@ public class Sprite {
     * @param y The y location of the sprite.
     * @param imageName The name of the image of the sprite.
     */
-   public Sprite(int x, int y, String imageName) {
+   public Sprite(double x, double y, String imageName) {
       
       this.x = x;
       this.y = y;
@@ -53,7 +51,7 @@ public class Sprite {
     * 
     * @return the x location of the sprite.
     */
-   public int getX() {
+   public double getX() {
       return x;
    }
    
@@ -62,7 +60,7 @@ public class Sprite {
     * 
     * @return the y location of the sprite.
     */
-   public int getY() {
+   public double getY() {
       return y;
    }
    
@@ -89,8 +87,16 @@ public class Sprite {
     * 
     * @param visible If true the sprite is visible, not if false
     */
-   public void setVisible(Boolean visible) {
+   void setVisible(boolean visible) {
       this.visible = visible;
+   }
+   
+   void setX(double d) {
+      x = d;
+   }
+   
+   void setY(double d) {
+      y = d;
    }
    
    /**
