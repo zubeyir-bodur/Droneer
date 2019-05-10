@@ -112,49 +112,49 @@ public abstract class Drone extends Sprite implements Runnable {
     */
    public final void turn(int degrees) {
       
-//      angle = angle % (Math.PI * 2);
+       angle = angle % (Math.PI * 2);
       
-      if (degrees > 0) {
-         if (degrees > ROTATION_SPEED) {
-            angle += Math.toRadians(ROTATION_SPEED);
-
-            try {
-               Thread.sleep(Board.DELAY);
-            } catch (InterruptedException ex) {
-               Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            turn(degrees - ROTATION_SPEED);
-         } else {
-
-            angle += Math.toRadians(degrees);
-
-            try {
-               Thread.sleep(Board.DELAY);
-            } catch (InterruptedException ex) {
-               Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         }
-      } else {
-         if (- degrees > ROTATION_SPEED) {
-            angle -= Math.toRadians(ROTATION_SPEED);
-
-            try {
-               Thread.sleep(Board.DELAY);
-            } catch (InterruptedException ex) {
-               Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            turn(degrees + ROTATION_SPEED);
-         } else {
-
-            angle += Math.toRadians(degrees);
-
-            try {
-               Thread.sleep(Board.DELAY);
-            } catch (InterruptedException ex) {
-               Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         }
-      }
+       if (degrees > 0) {
+           if (degrees > ROTATION_SPEED) {
+               angle += Math.toRadians(ROTATION_SPEED);
+               
+               try {
+                   Thread.sleep(Board.DELAY);
+               } catch (InterruptedException ex) {
+                   Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               turn(degrees - ROTATION_SPEED);
+           } else {
+               
+               angle += Math.toRadians(degrees);
+               
+               try {
+                   Thread.sleep(Board.DELAY);
+               } catch (InterruptedException ex) {
+                   Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       } else {
+           if (- degrees > ROTATION_SPEED) {
+               angle -= Math.toRadians(ROTATION_SPEED);
+               
+               try {
+                   Thread.sleep(Board.DELAY);
+               } catch (InterruptedException ex) {
+                   Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               turn(degrees + ROTATION_SPEED);
+           } else {
+               
+               angle += Math.toRadians(degrees);
+               
+               try {
+                   Thread.sleep(Board.DELAY);
+               } catch (InterruptedException ex) {
+                   Logger.getLogger(Drone.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       }
    }
    
    /**
@@ -205,11 +205,7 @@ public abstract class Drone extends Sprite implements Runnable {
       // an arbitrary point on the line perpendicular to the trajectory of the drone
       double xA = 0;
       double yA = yD - mP * xD;
-
-      // -------------------------------------- CHANGE HERE ---------------------------------------
-      // Tried to see if the ellipse is on the back or on the front but failed
-//      if ((xE - xA) * (yD - yA) - (yE - yA) * (xD - xA) < 0) {
-
+      
          // a, b, c in a*x^2+b*x+c = 0
          double a = 1 + m * m;
          double b = 2 * m * y1 - 2 * m * x1;
@@ -248,15 +244,49 @@ public abstract class Drone extends Sprite implements Runnable {
                   distance = distance2;
                }
             }
+            
+            // Lets check if the target drone is in front of us, or not.
+            boolean isInFront;
 
-            result = new Point((int) (xI + xE), (int) (yI + yE));
+            // There are 2 cases, and we can detect where the intersection points should be, by these cases
+            // case 1 : slope is non-negative ( 0 or positive real number)
+            if( m >= 0){
+                // case 1.1 : 0 < angle < pi/2
+                if( 0 <= angle && angle <= Math.PI / 2){
+                    // given these conditions, intersection point should be on right and above of our drone
+                    isInFront = ( xE - xD >= 0) && ( yE - yD >= 0);
+                } 
+                // case 1.2 : 3pi / 2 < angle < 2pi
+                else{
+                    // given these conditions, intersection point should be on left and below of our drone
+                    isInFront = ( xE - xD <= 0) && ( yE - yD <= 0);
+                }
+            }
+            // case 2 : slope is negative 
+            else{
+                // case 2.1 : pi/2 < angle < pi
+                if( Math.PI / 2 < angle &&  angle < Math.PI){
+                     // given these conditions, intersection point should be on left and above of our drone
+                    isInFront = ( xE - xD <= 0) && ( yE - yD >= 0);
+                }
+                // case 2.2 : 3pi/2 < angle < 2pi
+                else{
+                    // given these conditions, intersection point should be on right and below of our drone
+                    isInFront = ( xE - xD >= 0) && ( yE - yD <= 0);
+                }
+            }
+            
+//            System.out.println(" Drone cordination : (" + xD +","+ yD+")");
+//            System.out.println(" Drone angle : " + angle);
+//            System.out.println(" Target drone cordination : (" + xE +","+ yE+")");
+//            System.out.println(" Intersection point : (" + xI+ "," + yI + ")");
+//            System.out.println(" Is in front of our drone? : " + isInFront);
+            
+            if( isInFront)
+                result = new Point((int) (xI + xE), (int) (yI + yE));
+            else
+                result = null;
          }
-         // ------------------------------------- CHANGE HERE --------------------------------------
-//      } else {
-//         
-//         distance = -1;
-//         result = null;
-//      }
 
       this.distance = distance;
       return result;
