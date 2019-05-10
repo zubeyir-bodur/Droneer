@@ -1,5 +1,4 @@
 package ide;
-
 import java.awt.*;
 import javax.swing.*;
 
