@@ -40,6 +40,9 @@ public class RandomDrone extends Drone {
       fire();
    }
 
+   /**
+    * Turn around when hit a border.
+    */
    @Override
    public void onHitBorder() {
       running = false;

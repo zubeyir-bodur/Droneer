@@ -28,7 +28,7 @@ public class SquareDrone extends Drone {
       
       while (true) {
          move(100);
-         turn(15);
+         turn(450);
       }
    }
 
@@ -40,6 +40,9 @@ public class SquareDrone extends Drone {
       fire();
    }
 
+   /**
+    * Turn around when hit a border.
+    */
    @Override
    public void onHitBorder() {
       running = false;

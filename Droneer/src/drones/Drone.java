@@ -162,6 +162,8 @@ public abstract class Drone extends Sprite implements Runnable {
     * Scans the front of the drone, if the ellipse is on the front returns true; if not returns false.
     * 
     * @param e The ellipse that will be tested
+    * @param width The width of the board
+    * @param height The height of the board
     * @return true if the ellipse is in front of the drone, false if not.
     */
    public boolean scan(Ellipse2D.Double e, int width, int height) {
@@ -169,10 +171,11 @@ public abstract class Drone extends Sprite implements Runnable {
    }
    
    /**
-    * Returns the intersection point of the line of sight of the drone and the ellipse that is chosen.
-    * Also calculates the distance between this point and the drone.
+    * Returns the intersection point of the line of sight of the drone and the ellipse that is chosen.Also calculates the distance between this point and the drone.
     * 
     * @param e The ellipse that will be tested
+    * @param width The width of the board
+    * @param height The height of the board
     * @return The intersection point of the line of sight of the drone and the ellipse that is chosen.
     */
    public Point getIntersection(Ellipse2D.Double e, int width, int height) {

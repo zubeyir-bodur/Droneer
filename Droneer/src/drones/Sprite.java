@@ -91,10 +91,20 @@ public class Sprite {
       this.visible = visible;
    }
    
+   /**
+    * Set the x location.
+    * 
+    * @param d The new x location
+    */
    void setX(double d) {
       x = d;
    }
    
+   /**
+    * Set the y location.
+    * 
+    * @param d The new y location
+    */
    void setY(double d) {
       y = d;
    }
