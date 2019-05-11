@@ -39,8 +39,7 @@ public class XXXX extends Drone
 
 	/**
 	 * Determine how your drone will react 
-	 * when it hits to the wall. This method
-	 * might not be simple as run()!
+	 * when it hits to the wall.
 	 */
 	@Override
 	public void onHitBorder()

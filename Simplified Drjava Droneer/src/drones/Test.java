@@ -21,7 +21,7 @@ public class Test extends JFrame {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setTitle("Droneer");
       
-      b = new Board( new RandomDrone( 100, 100), new SquareDrone( 200, 200));
+      b = new UpdatableBoard();
       
       add(b);
       

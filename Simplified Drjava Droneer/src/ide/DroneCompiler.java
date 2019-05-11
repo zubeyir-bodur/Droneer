@@ -17,7 +17,7 @@ public class DroneCompiler{
     /*
      * Default constructor
      */
-    DroneCompiler(){
+    public DroneCompiler(){
         diagnosticsInfo = "";
     }
     
