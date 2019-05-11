@@ -13,6 +13,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.event.*;
 
 /**
  * The base JPanel where the drones will fight
@@ -23,40 +24,60 @@ import javax.swing.Timer;
 public class Board extends JPanel implements ActionListener {
    
    protected static final int DELAY = 5;
-   private final int W = 800;
-   private final int H = 600;
    
-   private Drone playerDrone;
+   private Drone myDrone;
    private Drone enemyDrone;
    private Timer timer;
-//   private long lastCalledP;
-//   private long lastCalledE;
+   private Thread myThread;
+   private Thread enemyThread;
+   //private DroneerMaster master;
+   
    boolean gameOver;
    
    /**
     * Create a new board.
     */
-   public Board() {
-      setPreferredSize(new Dimension(W, H));
+   public Board( Drone myDrone, Drone enemyDrone) {
+
+      //master = new DroneerMaster();
+      
       setFocusable(true);
       
       gameOver = false;
       
+      this.myDrone = myDrone;
+      this.enemyDrone = enemyDrone;
+      
+      myThread = new Thread(myDrone);
+      enemyThread = new Thread(enemyDrone);
+         
       initComponents();
+      
+      //setPreferredSize( new Dimension( 700, 500));
    }
 
+   public Thread getMyThread()
+   {
+      return myThread;
+   }
+   
+   public Thread getEnemyThread()
+   {
+      return enemyThread;
+   }
+   
+   public Timer getTimer()
+   {
+      return timer;
+   }
+   
    /**
     * Initialize the components of the board.
     */
    private void initComponents() {
-      playerDrone = new SquareDrone(100, 100);
-      enemyDrone = new RandomDrone(400, 400);
-      
-//      lastCalledP = System.currentTimeMillis();
-//      lastCalledE = System.currentTimeMillis();
-      
-      new Thread(playerDrone).start();
-      new Thread(enemyDrone).start();
+     
+      myThread.start();
+      enemyThread.start();
       
       timer = new Timer(DELAY, this);
       timer.start();
@@ -72,17 +93,17 @@ public class Board extends JPanel implements ActionListener {
       
       checkGameOver();
       
-      updateLasers(playerDrone.getLasers());
+      updateLasers(myDrone.getLasers());
       updateLasers(enemyDrone.getLasers());
       
       updatePlayerDrone();
       updateEnemyDrone();
       
       checkCollisions(enemyDrone);
-      checkCollisions(playerDrone);
+      checkCollisions(myDrone);
       
-      checkCollisions(playerDrone.getLasers(), enemyDrone);
-      checkCollisions(enemyDrone.getLasers(), playerDrone);
+      checkCollisions(myDrone.getLasers(), enemyDrone);
+      checkCollisions(enemyDrone.getLasers(), myDrone);
 
       repaint();
    }
@@ -121,11 +142,11 @@ public class Board extends JPanel implements ActionListener {
     */
    private void updatePlayerDrone() {
 
-      if (playerDrone.isVisible()) {
+      if (myDrone.isVisible()) {
          
-         if (playerDrone.scan(enemyDrone.getHitbox(), this.getWidth(), this.getHeight())) {
+         if (myDrone.scan(enemyDrone.getHitbox(), this.getWidth(), this.getHeight())) {
 
-            playerDrone.onScannedDrone();
+            myDrone.onScannedDrone();
          }
          
       } else {
@@ -142,7 +163,7 @@ public class Board extends JPanel implements ActionListener {
 
       if (enemyDrone.isVisible()) {
          
-         if (enemyDrone.scan(playerDrone.getHitbox(), this.getWidth(), this.getHeight())){
+         if (enemyDrone.scan(myDrone.getHitbox(), this.getWidth(), this.getHeight())){
             
             enemyDrone.onScannedDrone();
          }
@@ -215,7 +236,7 @@ public class Board extends JPanel implements ActionListener {
    public void paintComponent(Graphics g) {
       super.paintComponent(g);
       
-      List<Laser> playerLasers = playerDrone.getLasers();
+      List<Laser> playerLasers = myDrone.getLasers();
       List<Laser> enemyLasers = enemyDrone.getLasers();
       
       for (Laser l : playerLasers) {
@@ -226,7 +247,7 @@ public class Board extends JPanel implements ActionListener {
          drawLaser((Graphics2D) g, l);
       }
 
-      drawDrone((Graphics2D) g, playerDrone);
+      drawDrone((Graphics2D) g, myDrone);
       drawDrone((Graphics2D) g, enemyDrone);
       
       Toolkit.getDefaultToolkit().sync(); // to make the animations smoother

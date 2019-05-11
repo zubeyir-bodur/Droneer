@@ -38,7 +38,7 @@ public abstract class Drone extends Sprite implements Runnable {
       
       running = true;
       lastFired = System.currentTimeMillis();
-      health = 100;
+      health = 150;
       angle = 0;
       distance = -1;
       lasers = new ArrayList<Laser>();

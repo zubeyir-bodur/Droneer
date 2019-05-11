@@ -12,9 +12,9 @@ import javax.swing.border.*;
 public class CreditsMenu extends JPanel
 {
    // properties
-   public DroneerMenuButton backButton;
-   public JLabel creditsLabel;
-   public JPanel backPanel;
+   private DroneerMenuButton backButton;
+   private JLabel creditsLabel;
+   private JPanel backPanel;
    
    // constructors
    public CreditsMenu() 
@@ -36,7 +36,7 @@ public class CreditsMenu extends JPanel
       add( new JLabel());
       add( new JLabel());
       
-      creditsLabel = new JLabel( "<html><font color=\"red\">A</font>lp �neri</html>");
+      creditsLabel = new JLabel( "<html><font color=\"red\">A</font>lp Uneri</html>");
       creditsLabel.setForeground( Color.BLACK);
       creditsLabel.setFont( new Font( "Monospaced", Font.PLAIN, 40));
       creditsLabel.setBorder( new EmptyBorder(10, 0, 10, 0));
@@ -47,7 +47,7 @@ public class CreditsMenu extends JPanel
       add( new JLabel());
       add( new JLabel());
       
-      creditsLabel = new JLabel( "<html><font color=\"red\">Z</font>�beyir Bodur</html>");
+      creditsLabel = new JLabel( "<html><font color=\"red\">Z</font>ubeyir Bodur</html>");
       creditsLabel.setForeground( Color.BLACK);
       creditsLabel.setFont( new Font( "Monospaced", Font.PLAIN, 40));
       creditsLabel.setBorder( new EmptyBorder(10, 0, 10, 0));
@@ -58,7 +58,7 @@ public class CreditsMenu extends JPanel
       add( new JLabel());
       add( new JLabel());
       
-      creditsLabel = new JLabel( "<html><font color=\"red\">U</font>�ur Erdem Seyfi</html>");
+      creditsLabel = new JLabel( "<html><font color=\"red\">U</font>gur Erdem Seyfi</html>");
       creditsLabel.setForeground( Color.BLACK);
       creditsLabel.setFont( new Font( "Monospaced", Font.PLAIN, 40));
       creditsLabel.setBorder( new EmptyBorder(10, 0, 10, 0));
@@ -69,7 +69,7 @@ public class CreditsMenu extends JPanel
       add( new JLabel());
       add( new JLabel());
       
-      creditsLabel = new JLabel( "<html>Ege <font color=\"red\">K</font>aan G�rkan</html>");
+      creditsLabel = new JLabel( "<html>Ege <font color=\"red\">K</font>aan Gurkan</html>");
       creditsLabel.setForeground( Color.BLACK);
       creditsLabel.setFont( new Font( "Monospaced", Font.PLAIN, 40));
       creditsLabel.setBorder( new EmptyBorder(10, 0, 10, 0));
@@ -102,5 +102,9 @@ public class CreditsMenu extends JPanel
       
       add( new JLabel());
       add( backPanel);
+   }
+   
+   public JButton getBackButton() {
+      return backButton;
    }
 }

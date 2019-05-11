@@ -51,7 +51,7 @@ public class MenuTestClass {
       //************************************************
       
       // If clicked on the PLAY BUTTON in MAIN MENU
-      mainMenuPanel.playButton.addActionListener(new ActionListener(){
+      mainMenuPanel.getPlayButton().addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
             // Set the mainMenuFrame to be invisible and make playMenuFrame visible
@@ -61,28 +61,28 @@ public class MenuTestClass {
          
       });
       
-      // If clicked on the DESIGN BUTTON in MAIN MENU
-      mainMenuPanel.designButton.addActionListener(new ActionListener(){
+//      // If clicked on the DESIGN BUTTON in MAIN MENU
+//      mainMenuPanel.getDesignButton().addActionListener(new ActionListener(){
+//         
+//         public void actionPerformed(ActionEvent e) {
+//            
+//            mainMenuFrame.setVisible(false);
+//            designMenuFrame.setVisible(true);
+//            
+//            //designMenuPanel.fileChooser.showOpenDialog(designMenuPanel);
+//            //int returnVal = designMenuPanel.fileChooser.showOpenDialog(designMenuPanel);
+//            //if (returnVal == JFileChooser.APPROVE_OPTION){
+//               //File f = designMenuPanel.fileChooser.getSelectedFile();
+//               //Idk c = new Idk(f); // "Idk" To be replaced by the class accepting the file
+//               //c.processFile();
+//            }
+//            
+//         };
          
-         public void actionPerformed(ActionEvent e) {
-            
-            mainMenuFrame.setVisible(false);
-            designMenuFrame.setVisible(true);
-            
-            designMenuPanel.fileChooser.showOpenDialog(designMenuPanel);
-            int returnVal = designMenuPanel.fileChooser.showOpenDialog(designMenuPanel);
-            if (returnVal == JFileChooser.APPROVE_OPTION){
-               //File f = designMenuPanel.fileChooser.getSelectedFile();
-               //Idk c = new Idk(f); // "Idk" To be replaced by the class accepting the file
-               //c.processFile();
-            }
-            
-         }
-         
-      });
+      //});
       
       // If clicked on the EXIT BUTTON in MAIN MENU
-      mainMenuPanel.exitButton.addActionListener(new ActionListener(){
+      mainMenuPanel.getExitButton().addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
             System.exit(0);
@@ -94,40 +94,40 @@ public class MenuTestClass {
       //******** PLAY MENU PANEL BUTTON ACTIONS ********
       //************************************************
       
-      // If clicked on the STORY BUTTON in PLAY MENU
-      playMenuPanel.storyButton.addActionListener(new ActionListener(){
-         
-         public void actionPerformed(ActionEvent e) {
-            //ig do smth here idk
-         }
-         
-      });
+//      // If clicked on the STORY BUTTON in PLAY MENU
+//      playMenuPanel.getStoryButton().addActionListener(new ActionListener(){
+//         
+//         public void actionPerformed(ActionEvent e) {
+//            //ig do smth here idk
+//         }
+//         
+//      });
       
-      // If clicked on the ARENA BUTTON in PLAY MENU
-      playMenuPanel.arenaButton.addActionListener(new ActionListener(){
-         
-         public void actionPerformed(ActionEvent e) {
-            arenaMenuFrame.setVisible(true);
-            playMenuFrame.setVisible(false);
-         }
-         
-      });
+//      // If clicked on the ARENA BUTTON in PLAY MENU
+//      playMenuPanel.arenaButton.addActionListener(new ActionListener(){
+//         
+//         public void actionPerformed(ActionEvent e) {
+//            arenaMenuFrame.setVisible(true);
+//            playMenuFrame.setVisible(false);
+//         }
+//         
+//      });
       
-      // If clicked on the BACK BUTTON in PLAY MENU
-      playMenuPanel.backButton.addActionListener(new ActionListener(){
-         
-         public void actionPerformed(ActionEvent e) {
-            mainMenuFrame.setVisible(true);
-            playMenuFrame.setVisible(false);
-         }
-         
-      });
+//      // If clicked on the BACK BUTTON in PLAY MENU
+//      playMenuPanel.backButton.addActionListener(new ActionListener(){
+//         
+//         public void actionPerformed(ActionEvent e) {
+//            mainMenuFrame.setVisible(true);
+//            playMenuFrame.setVisible(false);
+//         }
+//         
+//      });
       
       //**************************************************
       //******** DESIGN MENU PANEL BUTTON ACTIONS ********
       //**************************************************
       
-      designMenuPanel.backButton.addActionListener(new ActionListener(){
+      designMenuPanel.getBackButton().addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
             mainMenuFrame.setVisible(true);
@@ -141,7 +141,7 @@ public class MenuTestClass {
       //**************************************************
       
       // If clicked on the BACK BUTTON in ARENA MENU
-      arenaMenuPanel.backButton.addActionListener(new ActionListener(){
+      arenaMenuPanel.getBackButton().addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
             playMenuFrame.setVisible(true);

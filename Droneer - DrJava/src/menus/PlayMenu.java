@@ -13,14 +13,14 @@ import java.util.ArrayList;
 
 public class PlayMenu extends Menu {
 
-   public MenuTestClass m = new MenuTestClass(this);
-   public ArrayList<Menu> menus;
-   public ArrayList<JComponent> components;
-   public boolean focused;
-   public JLabel selectLabel;
-   public DroneerMenuButton storyButton;
-   public DroneerMenuButton arenaButton;
-   public DroneerMenuButton backButton;
+   private MenuTestClass m = new MenuTestClass(this);
+   private ArrayList<Menu> menus;
+   private ArrayList<JComponent> components;
+   private boolean focused;
+   private JLabel selectLabel;
+   private DroneerMenuButton storyButton;
+   private DroneerMenuButton arenaButton;
+   private DroneerMenuButton backButton;
    
    public PlayMenu() {
       
