@@ -121,42 +121,52 @@ public class HelpMenu extends Menu {
    public void createNodes(DefaultMutableTreeNode top) {
       
       DefaultMutableTreeNode category = null;
-      DefaultMutableTreeNode book = null;
-      DefaultMutableTreeNode subcat = null;
+      DefaultMutableTreeNode subCategoryOneLevel = null;
+      DefaultMutableTreeNode subCategoryTwoLevels = null;
       
       category = new DefaultMutableTreeNode("General Java Help");
       top.add(category);
       
       //original Tutorial
-      book = new DefaultMutableTreeNode("Repetition");
-      category.add(book);
+      subCategoryOneLevel = new DefaultMutableTreeNode("Repetition");
+      category.add(subCategoryOneLevel);
       
-      subcat = new DefaultMutableTreeNode("While Loop");
-      book.add(subcat);
+      subCategoryTwoLevels = new DefaultMutableTreeNode("While Loop");
+      subCategoryOneLevel.add(subCategoryTwoLevels);
       
-      subcat = new DefaultMutableTreeNode("For Loop");
-      book.add(subcat);
+      subCategoryTwoLevels = new DefaultMutableTreeNode("For Loop");
+      subCategoryOneLevel.add(subCategoryTwoLevels);
       
-      subcat = new DefaultMutableTreeNode("For Each Loop");
-      book.add(subcat);
+      subCategoryTwoLevels = new DefaultMutableTreeNode("For Each Loop");
+      subCategoryOneLevel.add(subCategoryTwoLevels);
       
       //Tutorial Continued
-      book = new DefaultMutableTreeNode("Decision");
-      category.add(book);
+      subCategoryOneLevel = new DefaultMutableTreeNode("Decision");
+      category.add(subCategoryOneLevel);
       
-      subcat = new DefaultMutableTreeNode("If Statements");
-      book.add(subcat);
+      subCategoryTwoLevels = new DefaultMutableTreeNode("If Statements");
+      subCategoryOneLevel.add(subCategoryTwoLevels);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("Elements");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryTwoLevels = new DefaultMutableTreeNode("ArrayLists");
+      subCategoryOneLevel.add(subCategoryTwoLevels);
       
       //Swing Tutorial
-//      book = new DefaultMutableTreeNode("asd");
-//      category.add(book);
+//      subCategoryOneLevel = new DefaultMutableTreeNode("asd");
+//      category.add(subCategoryOneLevel);
       
-      //...add more books for programmers...
+      //...add more subCategoryOneLevels for programmers...
       
       category = new DefaultMutableTreeNode("DRONEER Methods Help");
       top.add(category);
       
-      //VM
+      subCategoryOneLevel = new DefaultMutableTreeNode("move() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("turn() Method");
+      category.add(subCategoryOneLevel);
       
    }
    

@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /*
- * @author Agil Aliyev, Alp Üneri
+ * @author Agil Aliyev, Alp Uneri
  * @version 8.5.19
  */
 public class Settings extends JPanel{
@@ -54,7 +54,7 @@ public class Settings extends JPanel{
       settingsLabel.setFont(new Font("Serif", Font.PLAIN, screenWidth/25));
       resolution.setFont(new Font("Serif", Font.PLAIN, screenWidth/50));
       // resolution string and other stuff
-      String[] tmp = {"1280×720","1366×768","1600×900","1920×1080", "2560×1440", "3840×2160"};
+      String[] tmp = {"1280ï¿½720","1366ï¿½768","1600ï¿½900","1920ï¿½1080", "2560ï¿½1440", "3840ï¿½2160"};
       res = tmp;
       spinForResolution = new JSpinner(new SpinnerListModel(res));
       spinForResolution.setPreferredSize(new Dimension(screenWidth/8, screenHeight/25));

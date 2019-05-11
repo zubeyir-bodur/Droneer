@@ -2,7 +2,7 @@ package ide;
 import javax.swing.*;
 
 /**
- * BU CLASS TEST AMAÇLIDIR. ÝÞÝMÝZ BÝTÝNCE KURTULACAZ BUNDAN 
+ * BU CLASS TEST 
  */
 public class InteractionsPanelTest
 {
