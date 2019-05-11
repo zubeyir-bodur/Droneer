@@ -17,7 +17,7 @@ public class SquareDrone extends Drone {
     * @param y The y location
     */
    public SquareDrone(int x, int y) {
-      super(x, y, "src/resources/drone.png");
+      super(x, y, "src/resources/dronePurple.png");
    }
    
    /**
