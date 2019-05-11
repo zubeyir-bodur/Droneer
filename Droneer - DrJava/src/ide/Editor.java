@@ -11,9 +11,8 @@ import javax.swing.undo.UndoManager;
 /*
  * Simple Editor class for writing code with several features
  * @author - Uður Erdem Seyfi, Zübeyir Bodur
- * @version - 10.05.2019
+ * @version - 11.05.2019
  */
-
 @SuppressWarnings("serial")
 public class Editor extends JPanel
 {
@@ -248,6 +247,7 @@ public class Editor extends JPanel
 		text = new JTextArea(20, 30);
 		text.setFont( new Font( Font.MONOSPACED, Font.PLAIN, 14 ));
 		text.setTabSize(4);
+		text.setText( getData("src\\ide\\template.txt"));
 		textPane = new JScrollPane(text);
 		TextLineNumber textLineNumber = new TextLineNumber( text);
 		textPane.setRowHeaderView( textLineNumber);
