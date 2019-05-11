@@ -168,6 +168,26 @@ public class HelpMenu extends Menu {
       subCategoryOneLevel = new DefaultMutableTreeNode("turn() Method");
       category.add(subCategoryOneLevel);
       
+      subCategoryOneLevel = new DefaultMutableTreeNode("fire() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("getHealth() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("turn() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("getLasers() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("onScannedDrone() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("onHitBorder() Method");
+      category.add(subCategoryOneLevel);
+      
+      subCategoryOneLevel = new DefaultMutableTreeNode("scan() Method");
+      category.add(subCategoryOneLevel);
    }
    
    public JButton getBackButton() {
