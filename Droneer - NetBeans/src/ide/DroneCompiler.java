@@ -49,7 +49,7 @@ public class DroneCompiler{
         Iterable<? extends JavaFileObject> compilationUnits = fileManager
             .getJavaFileObjectsFromStrings(Arrays.asList(directory));
         // Defining the compilation task
-        JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, diagnosticsCollector, null,
+        JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, diagnosticsCollector, options,
                                                              null, compilationUnits);
         boolean success = task.call();
         
