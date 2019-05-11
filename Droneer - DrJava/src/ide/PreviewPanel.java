@@ -4,7 +4,7 @@ import java.awt.*;
 
 /**
  * UNDER CONSTRUCTION - PLZ DONT INITIALIZE
- * @author Zübeyir Bodur
+ * @author Zubeyir Bodur
  * @version 1.5.2019
  */
 public class PreviewPanel extends JPanel
@@ -77,6 +77,6 @@ public class PreviewPanel extends JPanel
 //               battle.getDrones().get(i).getY(),
 //               battle.getDrones().get(i).getWidth(),
 //               battle.getDrones().get(i).getHeight() );
-// Burda drone'larý çiziyor. Bullet diye bi class da yazmamýz lazým galiba bullet'larý çizemeyebiliriz.
+// Burda drone'larï¿½ ï¿½iziyor. Bullet diye bi class da yazmamï¿½z lazï¿½m galiba bullet'larï¿½ ï¿½izemeyebiliriz.
    }
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /**
  * Interaction Panel that shows given information
- * @author Zübeyir Bodur
+ * @author Zubeyir Bodur
  * @version 1.5.2019
  */
 public class InteractionsPanel extends JPanel
