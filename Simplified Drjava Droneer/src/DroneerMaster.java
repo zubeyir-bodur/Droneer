@@ -14,6 +14,8 @@ public class DroneerMaster extends JFrame
 {
    // properties
    
+   static Timer timer;
+   
    //ArrayList to easily make changes
    static ArrayList<JFrame> frames = new ArrayList<JFrame>();
    
@@ -26,6 +28,8 @@ public class DroneerMaster extends JFrame
    static JFrame creditsMenuFrame = new JFrame();
    static JFrame helpMenuFrame = new JFrame();
    static JFrame escapeMenuFrame = new JFrame();
+   static JFrame wonFrame = new JFrame();
+   static JFrame lostFrame = new JFrame();
    static Test battleFrame;
    //static JFrame droneSelectMenuFrame = new JFrame();
 
@@ -35,12 +39,36 @@ public class DroneerMaster extends JFrame
    static CreditsMenu creditsMenu = new CreditsMenu();
    static HelpMenu helpMenuPanel = new HelpMenu();
    static EscapeMenu escapeMenu = new EscapeMenu();
+   static WinMenu winMenu = new WinMenu();
+   static LoseMenu loseMenu = new LoseMenu();
 //   static DroneSelectMenu droneSelectMenu = new DroneSelectMenu();
    
    // methods
    
    public static void main( String[] args)
    {      
+      timer = new Timer( 150, new ActionListener() {
+               
+               public void actionPerformed( ActionEvent e)
+               {
+                  if ( battleFrame.getBoard().getGameOver())
+                  {
+                     if ( battleFrame.getBoard().getLost())
+                     {
+                        timer.stop();
+                        battleFrame.setVisible( false);
+                        lostFrame.setVisible( true);
+                     }
+                     else
+                     {
+                        timer.stop();
+                        battleFrame.setVisible( false);
+                        wonFrame.setVisible( true);
+                     }
+                  }
+               }
+            });
+      
       //************************************************
       //******** MAIN MENU PANEL BUTTON ACTIONS ********
       //************************************************
@@ -50,7 +78,11 @@ public class DroneerMaster extends JFrame
          
          public void actionPerformed(ActionEvent e) {
             mainMenuFrame.setVisible(false);
+            
             battleFrame = new Test();
+            
+            timer.start();
+            
             battleFrame.getBoard().addKeyListener( new KeyListener() {
       
                public void keyPressed( KeyEvent e)
@@ -68,6 +100,7 @@ public class DroneerMaster extends JFrame
                public void keyReleased( KeyEvent e) {}
                public void keyTyped( KeyEvent e) {}
             });
+            
             battleFrame.setVisible(true);
          }
          
@@ -119,7 +152,7 @@ public class DroneerMaster extends JFrame
       //******** DESIGN MENU PANEL BUTTON ACTIONS ********
       //**************************************************
       
-      // If clicked on BACK BUTTON in PLAY MENU
+      // If clicked on BACK BUTTON in DESIGN MENU
       designMenuPanel.getBackButton().addActionListener(new ActionListener(){
          
          public void actionPerformed(ActionEvent e) {
@@ -194,6 +227,34 @@ public class DroneerMaster extends JFrame
          }
       });
       
+      //**************************************************
+      //******** WIN MENU PANEL BUTTON ACTIONS ********
+      //**************************************************
+      
+      // If clicked on MAIN MENU BUTTON in WIN MENU
+      winMenu.getMainMenuButton().addActionListener(new ActionListener(){
+         
+         public void actionPerformed(ActionEvent e) {
+            mainMenuFrame.setVisible(true);
+            wonFrame.setVisible(false);
+         }
+         
+      });
+      
+      //**************************************************
+      //******** LOSE MENU PANEL BUTTON ACTIONS ********
+      //**************************************************
+      
+      // If clicked on MAIN MENU BUTTON in LOSE MENU
+      loseMenu.getMainMenuButton().addActionListener(new ActionListener(){
+         
+         public void actionPerformed(ActionEvent e) {
+            mainMenuFrame.setVisible(true);
+            lostFrame.setVisible(false);
+         }
+         
+      });
+      
 //      //**************************************************
 //      //******** DRONE SELECT MENU PANEL BUTTON ACTIONS ********
 //      //**************************************************
@@ -256,6 +317,8 @@ public class DroneerMaster extends JFrame
       creditsMenuFrame.add( creditsMenu);
       helpMenuFrame.add(helpMenuPanel);
       escapeMenuFrame.add( escapeMenu);
+      wonFrame.add( winMenu);
+      lostFrame.add( loseMenu);
 //      droneSelectMenuFrame.add( droneSelectMenu);
       
       //******** ADD FRAMES TO ARRAYLIST ********
@@ -264,6 +327,8 @@ public class DroneerMaster extends JFrame
       frames.add( creditsMenuFrame);
       frames.add(helpMenuFrame);
       frames.add( escapeMenuFrame);
+      frames.add( wonFrame);
+      frames.add( lostFrame);
       
       // set default states for frames
       for(JFrame f: frames) 

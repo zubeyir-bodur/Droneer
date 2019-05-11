@@ -21,7 +21,8 @@ public class Board extends JPanel implements ActionListener {
    private Timer timer;
    private Thread myThread;
    private Thread enemyThread;
-   //private DroneerMaster master;
+   private boolean won;
+   private boolean lost;
    
    boolean gameOver;
    
@@ -44,7 +45,8 @@ public class Board extends JPanel implements ActionListener {
          
       initComponents();
       
-      //setPreferredSize( new Dimension( 700, 500));
+      lost = false;
+      won = false;
    }
 
    public Thread getMyThread()
@@ -142,6 +144,7 @@ public class Board extends JPanel implements ActionListener {
          
       } else {
          System.out.println("Lost");
+         lost = true;
          gameOver = true;
       }
    }
@@ -161,6 +164,7 @@ public class Board extends JPanel implements ActionListener {
          
       } else {
          System.out.println("Won");
+         won = true;
          gameOver = true;
       }
    }
@@ -271,5 +275,20 @@ public class Board extends JPanel implements ActionListener {
     */
    private void drawLaser(Graphics2D g2d, Laser l) {
       g2d.drawImage(l.getImage(), (int) l.getX(), (int) l.getY(), this);
+   }
+   
+   public boolean getLost()
+   {
+      return lost;
+   }
+   
+   public boolean getWon()
+   {
+      return won;
+   }
+   
+   public boolean getGameOver()
+   {
+      return gameOver;
    }
 }
