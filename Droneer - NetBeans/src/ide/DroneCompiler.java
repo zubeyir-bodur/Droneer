@@ -6,7 +6,7 @@ import javax.tools.*;
 
 /*
  * DroneCompiler class that makes compiling the file easier.
- * @author - Uður Erdem Seyfi
+ * @author - UÄŸur Erdem Seyfi
  * @version - 11.05.2019
  */
 

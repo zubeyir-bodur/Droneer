@@ -10,7 +10,7 @@ import javax.swing.undo.UndoManager;
 
 /*
  * Simple Editor class for writing code with several features
- * @author - Uður Erdem Seyfi, Zübeyir Bodur
+ * @author - UÄŸur Erdem Seyfi, ZÃ¼beyir Bodur
  * @version - 11.05.2019
  */
 @SuppressWarnings("serial")

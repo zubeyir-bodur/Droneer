@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -29,8 +28,6 @@ public class Board extends JPanel implements ActionListener {
    private Drone playerDrone;
    private Drone enemyDrone;
    private Timer timer;
-//   private long lastCalledP;
-//   private long lastCalledE;
    boolean gameOver;
    
    /**
@@ -51,9 +48,6 @@ public class Board extends JPanel implements ActionListener {
    private void initComponents() {
       playerDrone = new SquareDrone(100, 100);
       enemyDrone = new RandomDrone(400, 400);
-      
-//      lastCalledP = System.currentTimeMillis();
-//      lastCalledE = System.currentTimeMillis();
       
       new Thread(playerDrone).start();
       new Thread(enemyDrone).start();
@@ -156,7 +150,7 @@ public class Board extends JPanel implements ActionListener {
    /**
     * Checks the collisions between the boundaries and a drone.
     *
-    * @param Drone The drone
+    * @param d The drone
     */
    private void checkCollisions(Drone d) {
       
@@ -189,7 +183,7 @@ public class Board extends JPanel implements ActionListener {
     * Checks the collisions between the lasers and a drone.
     * 
     * @param lasers The list of lasers
-    * @param Drone The drone
+    * @param d The drone
     */
    private void checkCollisions(List<Laser> lasers, Drone d) {
       
