@@ -8,6 +8,6 @@ import examples.*;
  */
 public class UpdatableBoard extends Board{
     public UpdatableBoard(){
-        super(new RandomDrone(100,100), new SquareDrone(100,100));
+        super(new SquareDrone(54,396), new RandomDrone(755,639) );
     }
 }
