@@ -41,7 +41,7 @@ public abstract class Drone extends Sprite implements Runnable {
       health = 100;
       angle = 0;
       distance = -1;
-      lasers = new ArrayList<>();
+      lasers = new ArrayList<Laser>();
    }
    
    /**
