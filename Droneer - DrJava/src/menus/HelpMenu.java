@@ -12,7 +12,7 @@ import java.io.*;
 
 /**
  * The main menu panel
- * @author Ege Kaan Gürkan
+ * @author Ege Kaan Gürkan, Agil Aliyev
  * @version 03/05/2019
  */
 
@@ -174,19 +174,13 @@ public class HelpMenu extends Menu {
       subCategoryOneLevel = new DefaultMutableTreeNode("getHealth() Method");
       category.add(subCategoryOneLevel);
       
-      subCategoryOneLevel = new DefaultMutableTreeNode("turn() Method");
-      category.add(subCategoryOneLevel);
-      
-      subCategoryOneLevel = new DefaultMutableTreeNode("getLasers() Method");
-      category.add(subCategoryOneLevel);
-      
       subCategoryOneLevel = new DefaultMutableTreeNode("onScannedDrone() Method");
       category.add(subCategoryOneLevel);
       
       subCategoryOneLevel = new DefaultMutableTreeNode("onHitBorder() Method");
       category.add(subCategoryOneLevel);
       
-      subCategoryOneLevel = new DefaultMutableTreeNode("scan() Method");
+      subCategoryOneLevel = new DefaultMutableTreeNode("run() Method");
       category.add(subCategoryOneLevel);
    }
    
