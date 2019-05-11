@@ -14,7 +14,6 @@ import ide.*;
 public class DesignMenu extends JPanel {
    
    private DroneerMenuButton backButton;
-   private JLabel explainLabel;
    private ArrayList<JComponent> components;
    private JPanel textPanel;
    private JPanel backPanel;
@@ -41,26 +40,28 @@ public class DesignMenu extends JPanel {
       explainLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
       
       textPanel.setLayout(new BorderLayout());
+      backPanel.setLayout( new BorderLayout() );
       textPanel.add(explainLabel2, BorderLayout.NORTH);
       
-      backPanel.setLayout(new GridLayout(3,3));
-      for(int i = 0; i < 6; i++) {
-         backPanel.add(new JLabel());
-      }
-      backButton.setMargin(new Insets(20,30,20,30));
-      backPanel.add(backButton);
+//      backPanel.setLayout(new GridLayout(3,3));
+//      for(int i = 0; i < 6; i++) {
+//         backPanel.add(new JLabel());
+//      }
+//      backButton.setMargin(new Insets(20,30,20,30));
+      
       
       components = new ArrayList<JComponent>();
       components.add( textPanel);
       components.add(explainLabel2);
       components.add( editor);
       
-      for(JComponent c: components) {
-         c.setAlignmentX(Component.CENTER_ALIGNMENT);
-      }
+//      for(JComponent c: components) {
+//         c.setAlignmentX(Component.CENTER_ALIGNMENT);
+//      }
       
       add(textPanel, BorderLayout.NORTH);
       add( editor, BorderLayout.CENTER);
+      backPanel.add(backButton, BorderLayout.WEST);
       add(backPanel, BorderLayout.SOUTH);
       
 //      add(new JLabel());
