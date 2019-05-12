@@ -32,11 +32,11 @@ public class MainMenu extends JPanel {
       droneerLabel.setBorder(new EmptyBorder(30,0,30,0));
       
       // Create the initialised buttons
-      playButton = new DroneerMenuButton("PLAY");
-      designButton = new DroneerMenuButton("DESIGN");
-      helpButton = new DroneerMenuButton("HELP");
+      playButton = new DroneerMenuButton("  PLAY ");
+      designButton = new DroneerMenuButton(" DESIGN");
+      helpButton = new DroneerMenuButton("  HELP ");
       creditsButton = new DroneerMenuButton("CREDITS");
-      exitButton = new DroneerMenuButton("EXIT");
+      exitButton = new DroneerMenuButton(" EXIT  ");
       
       // Add the components to an arraylist to quickly set the center alignment
       components.add(droneerLabel);
