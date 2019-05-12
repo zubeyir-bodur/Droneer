@@ -17,7 +17,7 @@ public class Editor extends JPanel
 {
 	//JMenuBar menuBar; // might be added
 	JToolBar toolBar;
-	JButton save, saveAs, open, compile, run, undo, redo, help;
+	JButton newButton,save, saveAs, open, compile, run, undo, redo, help;
 	String filename, dir;
 
 	JScrollPane textPane;
@@ -56,6 +56,7 @@ public class Editor extends JPanel
 		// creating tool bar
 		toolBar = new JToolBar();
 		toolBar.setFloatable( false);
+		newButton = new JButton("New");
 		save    = new JButton("Save");
 		saveAs  = new JButton("Save As");
 		open    = new JButton("Open");
@@ -66,6 +67,7 @@ public class Editor extends JPanel
 		help    = new JButton("Help");
 
 		// adding buttons to toolbar
+		toolBar.add( newButton);
 		toolBar.add( save);
 		toolBar.add( saveAs);
 		toolBar.add( open);
@@ -75,7 +77,49 @@ public class Editor extends JPanel
 		toolBar.add( redo);
 		toolBar.add( help);
 
+		/*************************************************
+		 **ADD HOTKEY AND ACTION LISTENER TO NEW BUTTON**
+		 *************************************************/
+		Action newAct = new AbstractAction("New") {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if( hasChanged) {
+					int r = JOptionPane.showConfirmDialog(null, "You did not save the current file, do you want to save it and create a new file?",
+							"Save and open a new file?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					
+					if( r == JOptionPane.YES_OPTION) {
+						save.doClick();
+						
+						filename = "";
+						dir = "";
+						
+						text.setText( getData("src\\ide\\template.txt") );	
+						hasChanged = false;
+					}
+				} else {
+					int response = JOptionPane.showConfirmDialog(null, "Current file will be closed. Continue?",
+							"Create new file?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if( response == JOptionPane.YES_OPTION) {
+					
+						filename = "";
+						dir = "";
+						
+						text.setText( getData("src\\ide\\template.txt") );	
+						hasChanged = false;
+					}
+				}
+			}
+
+		};
+		newAct.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		newButton.setAction(newAct);
+		newButton.getActionMap().put("newAction", newAct);
+		newButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+				(KeyStroke) newAct.getValue(Action.ACCELERATOR_KEY), "newAction");
+		
+		
 		/*************************************************
 		 **ADD HOTKEY AND ACTION LISTENER TO SAVE BUTTON**
 		 *************************************************/
@@ -160,7 +204,7 @@ public class Editor extends JPanel
 					dir = fileChooser.getCurrentDirectory() + "";
 					fileChooser.setCurrentDirectory( new File(dir) );
 					hasChanged = false;
-					interactionsPanel.update("Welcome to Droneer. Current file directory is: " + System.getProperty("user.dir") + "\\" +  dir );
+					interactionsPanel.update("Welcome to Droneer. Current file directory is: " + "\\" +  dir );
 				}
 
 				// bug fix, discard all edits in UndoManager, have the scroll pane go to top.
