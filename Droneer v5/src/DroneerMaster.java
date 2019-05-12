@@ -13,7 +13,7 @@ import java.lang.reflect.Constructor;
 /**
  * Master class for Droneer, combines all other packages for a
  * hopefully functioning application.
- * @author Ege Kaan Gurkan, Alp Uneri
+ * @author Ege Kaan Gurkan, Alp Uneri, Ugur Erdem Seyfi Kucuk, Zübeyir Bodur
  * @version 11.5.19
  */
 public class DroneerMaster extends JFrame
@@ -21,7 +21,7 @@ public class DroneerMaster extends JFrame
 	// properties
 
 	static Timer timer;
-
+	
 	//ArrayList to easily make changes
 	static ArrayList<JFrame> frames = new ArrayList<JFrame>();
 
@@ -111,7 +111,10 @@ public class DroneerMaster extends JFrame
 					myDroneName = fileChooser.getName(fileChooser.getSelectedFile());
 					myDroneName = myDroneName.substring(0, myDroneName.length() - 5);
 					droneSelectMenu.setMyDroneSelectButton(myDroneName);
-					System.out.println(myDroneName);
+				}
+				if ( myDroneName != null && enemyDroneName != null )
+				{
+					droneSelectMenu.getPlayButton().setEnabled(true);
 				}
 			}
 		});
@@ -129,7 +132,10 @@ public class DroneerMaster extends JFrame
 					enemyDroneName = fileChooser.getName(fileChooser.getSelectedFile());
 					enemyDroneName = enemyDroneName.substring(0, enemyDroneName.length() - 5);
 					droneSelectMenu.setEnemyDroneSelectButton(enemyDroneName);
-					System.out.println(enemyDroneName);
+					if ( myDroneName != null && enemyDroneName != null )
+					{
+						droneSelectMenu.getPlayButton().setEnabled(true);
+					}
 				}
 			}
 		});
@@ -138,15 +144,6 @@ public class DroneerMaster extends JFrame
 		droneSelectMenu.getPlayButton().addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println(myDroneName + " " + enemyDroneName);
-				if ( myDroneName == null )
-					JOptionPane.showMessageDialog(null, "Please select your drone.",
-							"Drone Not Selected", JOptionPane.WARNING_MESSAGE);
-				else if ( enemyDroneName == null )
-					JOptionPane.showMessageDialog(null, "Please select enemy drone.",
-							"Drone Not Selected", JOptionPane.WARNING_MESSAGE);
-				else
-				{
 					Constructor c_1, c_2;
 			    	
 					// Getting screen information
@@ -191,7 +188,6 @@ public class DroneerMaster extends JFrame
 					});
 
 					battleFrame.setVisible(true);
-				}
 			}
 		});
 		
@@ -210,10 +206,8 @@ public class DroneerMaster extends JFrame
 		mainMenuPanel.getDesignButton().addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-
 				mainMenuFrame.setVisible(false);
 				designMenuFrame.setVisible(true);
-
 			}
 
 		});
@@ -261,6 +255,15 @@ public class DroneerMaster extends JFrame
 				designMenuFrame.setVisible(false);
 			}
 
+		});
+		
+		// If clicked Help Button in Design Menu
+		designMenuPanel.getEditor().getHelpButton().addActionListener( new ActionListener() {
+			
+			public void actionPerformed( ActionEvent e) { 
+				helpMenuFrame.setVisible(true);
+				designMenuFrame.setVisible(false);
+			}
 		});
 
 		//**************************************************
