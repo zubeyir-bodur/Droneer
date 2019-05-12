@@ -11,7 +11,7 @@ import examples.*;
  */
 public class Battle extends JFrame {
    
-   Board b;
+   Board board;
    HealthPanel healthPanel;
    
    /**
@@ -21,11 +21,11 @@ public class Battle extends JFrame {
       
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setTitle("Droneer");
-      b = new Board(drone_1, drone_2);
-      healthPanel = new HealthPanel(b.getMyDrone(), b.getEnemyDrone());
+      board = new Board(drone_1, drone_2);
+      healthPanel = new HealthPanel(board.getMyDrone(), board.getEnemyDrone());
       setLayout(new BorderLayout() );
       add( healthPanel, BorderLayout.NORTH );
-      add(b);
+      add(board);
       
       //pack();
       setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -36,7 +36,7 @@ public class Battle extends JFrame {
    
    public Board getBoard()
    {
-      return b;
+      return board;
    }
    
    public HealthPanel getHealthPanel()
