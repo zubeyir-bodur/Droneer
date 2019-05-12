@@ -18,22 +18,29 @@ public class EscapeMenu extends JPanel {
    
    public EscapeMenu() {
       
-      setLayout(new GridLayout( 4, 1));
+      setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       
       // Block to set the label style
       explainLabel = new JLabel("PAUSED");
       explainLabel.setForeground(Color.BLACK);
-      explainLabel.setFont(new Font("Monospaced", Font.PLAIN, 35));
+      explainLabel.setFont(new Font("Monospaced", Font.BOLD, 75));
       explainLabel.setBorder(new EmptyBorder(50,0,70,0));
+      JLabel empty = new JLabel(" ");
+      empty.setFont(new Font("Monospaced", Font.BOLD, 50));
       
       // Create the initialised buttons
       resumeButton = new DroneerMenuButton("Resume");
       helpButton = new DroneerMenuButton("Help");
       mainMenuButton = new DroneerMenuButton("Main Menu");
 
-      explainLabel.setHorizontalAlignment( JLabel.CENTER);
+      explainLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+      empty.setAlignmentX(Component.CENTER_ALIGNMENT);
+      resumeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+      helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+      mainMenuButton.setAlignmentX(Component.CENTER_ALIGNMENT);
       
       add(explainLabel);
+      add(empty);
       add( resumeButton);
       add( helpButton);
       add( mainMenuButton);
