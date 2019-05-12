@@ -74,4 +74,8 @@ public class DesignMenu extends JPanel {
    public JButton getBackButton() {
       return backButton;
    }
+   
+   public Editor getEditor() {
+	   return editor;
+   }
 }
