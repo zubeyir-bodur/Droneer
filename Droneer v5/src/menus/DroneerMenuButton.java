@@ -1,9 +1,11 @@
 package menus;
+
 import java.awt.*;
 import javax.swing.*;
 
 /**
  * Class that styles the application-standard buttons that are used
+ * 
  * @author Ege Kaan GUrkan
  * @version 03/05/2019
  */
@@ -11,13 +13,13 @@ import javax.swing.*;
 public class DroneerMenuButton extends JButton {
 
    public DroneerMenuButton(String name) {
-      
+
       super(name);
-      
+
       setForeground(Color.BLACK);
       setBackground(Color.WHITE);
-      setMargin(new Insets(30,70,30,70));
+      setMargin(new Insets(30, 70, 30, 70));
       setFont(new Font("Monospaced", Font.BOLD, 20));
-      //setText(getText().toUpperCase());
+      // setText(getText().toUpperCase());
    }
 }

@@ -1,4 +1,5 @@
 package examples;
+
 import drones.*;
 
 /**
@@ -8,7 +9,7 @@ import drones.*;
  * @version 11.5.19
  */
 public class SquareDrone extends Drone {
-   
+
    /**
     * Construct the drone at the point P(x, y).
     * 
@@ -18,13 +19,13 @@ public class SquareDrone extends Drone {
    public SquareDrone(int x, int y) {
       super(x, y, "src/resources/dronePurple.png");
    }
-   
+
    /**
     * Draw a square when the game starts.
     */
    @Override
    public void run() {
-      
+
       while (true) {
          move(300);
          turn(450);
@@ -44,8 +45,7 @@ public class SquareDrone extends Drone {
     */
    @Override
    public void onHitBorder() {
-	   turn(180);
+      turn(180);
    }
-   
-   
+
 }

@@ -1,4 +1,5 @@
 package examples;
+
 import drones.*;
 
 /**
@@ -8,7 +9,7 @@ import drones.*;
  * @version 11.5.19
  */
 public class RandomDrone extends Drone {
-   
+
    /**
     * Construct the drone at the point P(x, y).
     * 
@@ -18,19 +19,19 @@ public class RandomDrone extends Drone {
    public RandomDrone(int x, int y) {
       super(x, y, "src/resources/droneBlack.png");
    }
-   
+
    /**
     * Move randomly when the game starts.
     */
    @Override
    public void run() {
-	   
+
       while (true) {
          move((int) (Math.random() * 300));
          turn(360 + (int) (Math.random() * 360));
       }
    }
-   
+
    /**
     * Fire once when the drone is scanned.
     */
@@ -44,6 +45,6 @@ public class RandomDrone extends Drone {
     */
    @Override
    public void onHitBorder() {
-	   turn(180);
+      turn(180);
    }
 }

@@ -7,15 +7,16 @@ package drones;
  * @version 03/05/2019
  */
 public class Laser extends Sprite {
-   
-   private final int SPEED = 5;
+
+   private final int SPEED = 7;
    private final double angle;
 
    /**
-    * Construct a new laser at the point P(x, y) moving along the trajectory of the angle.
+    * Construct a new laser at the point P(x, y) moving along the trajectory of the
+    * angle.
     * 
-    * @param x The x point of the laser
-    * @param y The y point of the laser
+    * @param x     The x point of the laser
+    * @param y     The y point of the laser
     * @param angle The angle of the trajectory of the laser
     */
    public Laser(double x, double y, double angle) {
@@ -25,7 +26,8 @@ public class Laser extends Sprite {
    }
 
    /**
-    * Move the laser at a specified speed on the linear trajectory specified by its angle.
+    * Move the laser at a specified speed on the linear trajectory specified by its
+    * angle.
     */
    public void move() {
       x += SPEED * Math.cos(angle);

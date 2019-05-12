@@ -1,19 +1,20 @@
 package ide;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * UNDER CONSTRUCTION - PLZ DONT INITIALIZE
+ * 
  * @author Zubeyir Bodur
  * @version 1.5.2019
  */
-public class PreviewPanel extends JPanel
-{
+public class PreviewPanel extends JPanel {
    final int DELAY = 10;
-   
+
 // private Battle battle;
    private Timer timer;
-   
+
 //   public PreviewPanel( Drone droneOfPlayer)
 //   {
 //      timer = new Timer( DELAY, new ActionListener() {
@@ -28,7 +29,7 @@ public class PreviewPanel extends JPanel
 //      drones.add(dummy);  
 //      battle = new Battle(drones);
 //   }
-   
+
 //   public class DummyDrone extends Drone
 //   {
 //      @Override
@@ -37,39 +38,35 @@ public class PreviewPanel extends JPanel
 //         // stay still
 //      }
 //   }
-   
+
    /**
     * Starts the simulation
     */
-   public void start()
-   {
+   public void start() {
       timer.start();
    }
-   
+
    /**
     * Pauses the simulation
     */
-   public void pause()
-   {
+   public void pause() {
       timer.stop();
    }
-   
+
    /**
     * Stops the simulation
     */
-   public void stop()
-   {
+   public void stop() {
       timer.restart();
       timer.stop();
    }
-   
+
    /**
-    * Draws filled ovals that represent drones each 10 milisecond.
-    * For bullets, draws points each 10 miliseconds.
+    * Draws filled ovals that represent drones each 10 milisecond. For bullets,
+    * draws points each 10 miliseconds.
     */
    @Override
-   public void paintComponent( Graphics g)
-   {
+   public void paintComponent(Graphics g) {
       super.paintComponent(g);
       // Painting drones, bullets. TO DO
 //      for ( int i = 0; i < 2; i++) 
