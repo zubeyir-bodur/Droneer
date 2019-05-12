@@ -36,7 +36,7 @@ public class DroneerMaster extends JFrame
 	static JFrame escapeMenuFrame = new JFrame();
 	static JFrame wonFrame = new JFrame();
 	static JFrame lostFrame = new JFrame();
-	static Test battleFrame;
+	static Battle battleFrame;
 	static JFrame droneSelectMenuFrame = new JFrame();
 
 	//all panels
@@ -162,7 +162,7 @@ public class DroneerMaster extends JFrame
 						c_2 = Class.forName("examples."+enemyDroneName).getConstructor(Integer.TYPE, Integer.TYPE);
 						Drone drone_2 = (Drone) c_2.newInstance( (int) (width * Math.random()), (int) (height * Math.random()));
 						
-						battleFrame = new Test(drone_1, drone_2);
+						battleFrame = new Battle(drone_1, drone_2);
 						
 					} catch (Exception exc) {
 						System.out.println( exc.getMessage() );
