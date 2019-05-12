@@ -17,7 +17,7 @@ public class DroneerMenuButton extends JButton {
       setForeground(Color.BLACK);
       setBackground(Color.WHITE);
       setMargin(new Insets(30,70,30,70));
-      setFont(new Font("Monospaced", Font.PLAIN, 20));
+      setFont(new Font("Monospaced", Font.BOLD, 20));
       //setText(getText().toUpperCase());
    }
 }
