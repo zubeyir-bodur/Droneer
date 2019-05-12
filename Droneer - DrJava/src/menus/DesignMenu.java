@@ -13,16 +13,16 @@ import ide.*;
 
 public class DesignMenu extends Menu {
    
-   public JFileChooser fileChooser = new JFileChooser("/Users/egekaangurkan/Desktop/DRONEER");
-   public MenuTestClass m = new MenuTestClass(this);
-   public boolean focused;
-   public DroneerMenuButton backButton;
-   public JLabel explainLabel;
-   public ArrayList<JComponent> components;
-   public JPanel textPanel;
-   public JPanel backPanel;
-   public Editor editor;
-   public JLabel explainLabel2;
+   private JFileChooser fileChooser = new JFileChooser("/Users/egekaangurkan/Desktop/DRONEER");
+   private MenuTestClass m = new MenuTestClass(this);
+   private boolean focused;
+   private DroneerMenuButton backButton;
+   private JLabel explainLabel;
+   private ArrayList<JComponent> components;
+   private JPanel textPanel;
+   private JPanel backPanel;
+   private Editor editor;
+   private JLabel explainLabel2;
    
    /**
     * Creates a JFileChooser and displays it with the given directory

@@ -13,17 +13,17 @@ import java.util.ArrayList;
 
 public class MainMenu extends Menu {
 
-   public MenuTestClass m = new MenuTestClass(this);
-   public ArrayList<Menu> menus;
-   public ArrayList<JComponent> components;
-   public boolean focused;
-   public JLabel droneerLabel;
-   public DroneerMenuButton playButton;
-   public DroneerMenuButton designButton;
-   public DroneerMenuButton helpButton;
-   public DroneerMenuButton settingsButton;
-   public DroneerMenuButton creditsButton;
-   public DroneerMenuButton exitButton;
+   private MenuTestClass m = new MenuTestClass(this);
+   private ArrayList<Menu> menus;
+   private ArrayList<JComponent> components;
+   private boolean focused;
+   private JLabel droneerLabel;
+   private DroneerMenuButton playButton;
+   private DroneerMenuButton designButton;
+   private DroneerMenuButton helpButton;
+   //public DroneerMenuButton settingsButton;
+   private DroneerMenuButton creditsButton;
+   private DroneerMenuButton exitButton;
    
    public MainMenu() {
       
@@ -43,7 +43,7 @@ public class MainMenu extends Menu {
       playButton = new DroneerMenuButton("Play");
       designButton = new DroneerMenuButton("Design");
       helpButton = new DroneerMenuButton("Help");
-      settingsButton = new DroneerMenuButton("Settings");
+      //settingsButton = new DroneerMenuButton("Settings");
       creditsButton = new DroneerMenuButton("Credits");
       exitButton = new DroneerMenuButton("Exit");
       
@@ -52,7 +52,7 @@ public class MainMenu extends Menu {
       components.add(playButton);
       components.add(designButton);
       components.add(helpButton);
-      components.add(settingsButton);
+      //components.add(settingsButton);
       components.add(creditsButton);
       components.add(exitButton);
       
@@ -75,7 +75,7 @@ public class MainMenu extends Menu {
       add(playButton);
       add(designButton);
       add(helpButton);
-      add(settingsButton);
+      //add(settingsButton);
       add(creditsButton);
       add(exitButton);
    }
@@ -92,9 +92,9 @@ public class MainMenu extends Menu {
       return helpButton;
    }
    
-   public JButton getSettingsButton() {
-      return settingsButton;
-   }
+//   public JButton getSettingsButton() {
+//      return settingsButton;
+//   }
    
    public JButton getCreditsButton() {
       return creditsButton;

@@ -17,7 +17,7 @@ public class RandomDrone extends Drone {
     * @param y The y location
     */
    public RandomDrone(int x, int y) {
-      super(x, y, "src/resources/drone.png");
+      super(x, y, "src/resources/droneBlack.png");
    }
    
    /**

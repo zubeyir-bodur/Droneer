@@ -7,9 +7,10 @@ import drones.Drone;
  * to 'XXXX'. Make sure file name is the same as
  * your class name.
  */
-public class XXXX extends Drone;
+public class XXXX extends Drone
 {
-	public Drone()
+	// Change 'XXXX' to your dronename
+	public XXXX()
 	{
 		super();
 	}

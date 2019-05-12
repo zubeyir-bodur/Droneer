@@ -12,16 +12,16 @@ import java.util.ArrayList;
 
 public class ArenaMenu extends Menu {
 
-   public MenuTestClass m = new MenuTestClass(this);
-   public ArrayList<Menu> menus;
-   public ArrayList<JComponent> components;
-   public boolean focused;
-   public JLabel explainLabel;
-   public DroneerMenuButton beginnerButton;
-   public DroneerMenuButton interButton;
-   public DroneerMenuButton advancedButton;
-   public DroneerMenuButton sandboxButton;
-   public DroneerMenuButton backButton;
+   private MenuTestClass m = new MenuTestClass(this);
+   private ArrayList<Menu> menus;
+   private ArrayList<JComponent> components;
+   private boolean focused;
+   private JLabel explainLabel;
+   private DroneerMenuButton beginnerButton;
+   private DroneerMenuButton interButton;
+   private DroneerMenuButton advancedButton;
+   private DroneerMenuButton sandboxButton;
+   private DroneerMenuButton backButton;
    
    public ArenaMenu() {
       

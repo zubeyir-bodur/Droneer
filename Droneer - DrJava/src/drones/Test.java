@@ -1,6 +1,9 @@
 package drones;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import examples.*;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * A JFrame for testing purposes
@@ -20,12 +23,20 @@ public class Test extends JFrame {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setTitle("Droneer");
       
-      b = new Board();
+      b = new Board( new RandomDrone( 100, 100), new SquareDrone( 200, 200));
       
       add(b);
       
-      pack();
+      //pack();
+      setExtendedState(JFrame.MAXIMIZED_BOTH); 
+      setUndecorated(true);
+      
       setLocationRelativeTo(null);
+   }
+   
+   public Board getBoard()
+   {
+      return b;
    }
    
    /**
@@ -43,5 +54,4 @@ public class Test extends JFrame {
          }
       });
    }
-   
 }
