@@ -320,6 +320,18 @@ public abstract class Drone extends Sprite implements Runnable {
       return lasers;
    }
    
+   public final void onHitBorderThread() {
+	      running = false;
+	      new Thread(new Runnable() {
+
+	         @Override
+	         public void run() {
+	        	 onHitBorder();
+	            running = true;
+	         }
+	      }).start();
+   }
+   
    /**
     * Is called when a drone is scanned.
     */

@@ -27,7 +27,7 @@ public class SquareDrone extends Drone {
       
       while (true) {
          move(100);
-         turn(30);
+         turn(90);
       }
    }
 
@@ -44,15 +44,7 @@ public class SquareDrone extends Drone {
     */
    @Override
    public void onHitBorder() {
-      running = false;
-      new Thread(new Runnable() {
-
-         @Override
-         public void run() {
-            turn(180);
-            running = true;
-         }
-      }).start();
+	   turn(180);
    }
    
    

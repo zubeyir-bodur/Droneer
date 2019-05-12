@@ -179,25 +179,25 @@ public class Board extends JPanel implements ActionListener {
       if (d.getX() < 0) {
          d.hit();
          d.setX(1);
-         d.onHitBorder();
+         d.onHitBorderThread();
       }
       
       if (d.getX() + d.getR() > this.getWidth()) {
          d.hit();
          d.setX(this.getWidth() - d.getR() - 1);
-         d.onHitBorder();
+         d.onHitBorderThread();
       }
       
       if (d.getY() < 0) {
          d.hit();
          d.setY(1);
-         d.onHitBorder();
+         d.onHitBorderThread();
       }
       
       if (d.getY() + d.getR() > this.getHeight()) {
          d.hit();
          d.setY(this.getHeight() - d.getR() - 1);
-         d.onHitBorder();
+         d.onHitBorderThread();
       }
    }
    

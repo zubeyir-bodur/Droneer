@@ -44,14 +44,6 @@ public class RandomDrone extends Drone {
     */
    @Override
    public void onHitBorder() {
-      running = false;
-      new Thread(new Runnable() {
-
-         @Override
-         public void run() {
-            turn(180);
-            running = true;
-         }
-      }).start();
+	   turn(180);
    }
 }
