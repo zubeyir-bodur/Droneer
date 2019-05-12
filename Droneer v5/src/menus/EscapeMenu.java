@@ -5,7 +5,7 @@ import javax.swing.border.*;
 
 /**
  * Panel for the Escape Screen
- * @author Ege Kaan Gurkan, Alp Uneri
+ * @author Ege Kaan Gurkan, Alp Uneri, Zubeyir Bodur
  * @version 11.5.19
  */
 

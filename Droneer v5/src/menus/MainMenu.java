@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * @author Ege Kaan Gurkan, Alp Uneri
  * @version 8.5.19
  */
-
 public class MainMenu extends JPanel {
 
    private ArrayList<JComponent> components;
@@ -29,15 +28,15 @@ public class MainMenu extends JPanel {
       // Block to set the label style
       droneerLabel = new JLabel("DRONEER");
       droneerLabel.setForeground(Color.BLACK);
-      droneerLabel.setFont(new Font("Monospaced", Font.BOLD, 50));
+      droneerLabel.setFont(new Font("Monospaced", Font.BOLD, 75));
       droneerLabel.setBorder(new EmptyBorder(30,0,30,0));
       
       // Create the initialised buttons
-      playButton = new DroneerMenuButton("Play");
-      designButton = new DroneerMenuButton("Design");
-      helpButton = new DroneerMenuButton("Help");
-      creditsButton = new DroneerMenuButton("Credits");
-      exitButton = new DroneerMenuButton("Exit");
+      playButton = new DroneerMenuButton("PLAY");
+      designButton = new DroneerMenuButton("DESIGN");
+      helpButton = new DroneerMenuButton("HELP");
+      creditsButton = new DroneerMenuButton("CREDITS");
+      exitButton = new DroneerMenuButton("EXIT");
       
       // Add the components to an arraylist to quickly set the center alignment
       components.add(droneerLabel);
@@ -49,6 +48,10 @@ public class MainMenu extends JPanel {
       
       for(JComponent c: components) {
          c.setAlignmentX(Component.CENTER_ALIGNMENT);
+         if ( c instanceof JButton)
+         {
+        	((JButton) c).setFont(new Font("Monospaced", Font.BOLD, 20) );
+         }
       }
       
       add(droneerLabel);
