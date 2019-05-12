@@ -268,6 +268,11 @@ public class Editor extends JPanel
 		undo.setEnabled( editManager.canUndo() );
 		redo.setEnabled( editManager.canUndo() );
 	}
+	
+	public JButton getHelpButton()
+	{
+		return help;
+	}
 
 	private String getData( String filename) 
 	{
