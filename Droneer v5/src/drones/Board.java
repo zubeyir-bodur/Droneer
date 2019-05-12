@@ -246,6 +246,14 @@ public class Board extends JPanel implements ActionListener {
       drawDrone((Graphics2D) g, myDrone);
       drawDrone((Graphics2D) g, enemyDrone);
       
+      // delete later
+//      Point p = myDrone.getIntersection(enemyDrone.getHitbox(), this.getWidth(), this.getHeight());
+//      
+//      if (myDrone.getDistance() > 0) {
+//    	  g.drawOval((int) p.getX(), (int) p.getY(), 10, 10);
+//      }
+      // till here
+      
       Toolkit.getDefaultToolkit().sync(); // to make the animations smoother
    }
 

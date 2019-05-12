@@ -8,7 +8,7 @@ package drones;
  */
 public class Laser extends Sprite {
    
-   private final int SPEED = 3;
+   private final int SPEED = 5;
    private final double angle;
 
    /**

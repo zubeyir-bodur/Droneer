@@ -222,11 +222,12 @@ public abstract class Drone extends Sprite implements Runnable {
 		// if delta < 0 no intersection, if > 0 two intersections, if = 0 one
 		// intersection
 		if (delta < 0) {
-
+//			System.out.println("No enemy");
 			result = null;
 			distance = -1;
 		} else {
 
+//			System.out.println("Found");
 			xI = (-b + Math.sqrt(delta)) / (2 * a);
 			yI = m * (xI - x1) + y1;
 
