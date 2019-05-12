@@ -17,11 +17,11 @@ public class Test extends JFrame {
    /**
     * Create the JFrame.
     */
-   public Test() {
+   public Test(Drone drone_1, Drone drone_2) {
       
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setTitle("Droneer");
-      b = new UpdatableBoard();
+      b = new Board(drone_1, drone_2);
       healthPanel = new HealthPanel(b.getMyDrone(), b.getEnemyDrone());
       setLayout(new BorderLayout() );
       add( healthPanel, BorderLayout.NORTH );
@@ -55,7 +55,7 @@ public class Test extends JFrame {
          
          @Override
          public void run() {
-            new Test().setVisible(true);
+            // new Test().setVisible(true);
          }
       });
    }
