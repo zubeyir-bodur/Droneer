@@ -73,6 +73,7 @@ public class Board extends JPanel implements ActionListener {
       enemyThread.start();
       
       timer = new Timer(DELAY, this);
+      timer.setInitialDelay(100);
       timer.start();
    }
 
@@ -175,9 +176,9 @@ public class Board extends JPanel implements ActionListener {
     * @param Drone The drone
     */
    private void checkCollisions(Drone d) {
-	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-       int height = (int) screenSize.getHeight();
-       int width =  (int) screenSize.getWidth();
+//	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//       int height = (int) screenSize.getHeight();
+//       int width =  (int) screenSize.getWidth();
        
       if (d.getX() < 0) {
          d.hit();
@@ -185,7 +186,7 @@ public class Board extends JPanel implements ActionListener {
          d.onHitBorderThread();
       }
       
-      if (d.getX() + d.getR() > width) {
+      if (d.getX() + d.getR() > this.getWidth()) {
          d.hit();
          d.setX(this.getWidth() - d.getR() - 1);
          d.onHitBorderThread();
@@ -197,7 +198,7 @@ public class Board extends JPanel implements ActionListener {
          d.onHitBorderThread();
       }
       
-      if (d.getY() + d.getR() > height) {
+      if (d.getY() + d.getR() > this.getHeight()) {
          d.hit();
          d.setY(this.getHeight() - d.getR() - 1);
          d.onHitBorderThread();
