@@ -14,7 +14,7 @@ import java.lang.reflect.Constructor;
  * Master class for Droneer, combines all other packages for a hopefully
  * functioning application.
  * 
- * @author Ege Kaan Gurkan, Alp Uneri, Ugur Erdem Seyfi Kucuk, Zübeyir Bodur
+ * @author Ege Kaan Gurkan, Alp Uneri, Ugur Erdem Seyfi Kucuk, Zübeyir Bodur, Baykam Say
  * @version 11.5.19
  */
 public class DroneerMaster extends JFrame {
