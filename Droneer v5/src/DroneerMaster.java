@@ -1,9 +1,14 @@
 import drones.*;
+import ide.*;
 import menus.*;
 import javax.swing.*;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.io.*;
+import java.lang.reflect.Constructor;
 
 /**
  * Master class for Droneer, combines all other packages for a
@@ -59,20 +64,16 @@ public class DroneerMaster extends JFrame
 				battleFrame.getHealthPanel().updateHealth();
 				if ( battleFrame.getBoard().getGameOver())
 				{
+					timer.stop();
+					droneSelectMenu.setMyDroneSelectButton("Open");
+					droneSelectMenu.setEnemyDroneSelectButton("Open");
+					battleFrame.setVisible( false);
 					if ( battleFrame.getBoard().getLost())
 					{
-						timer.stop();
-						droneSelectMenu.setMyDroneSelectButton("Open");
-						droneSelectMenu.setEnemyDroneSelectButton("Open");
-						battleFrame.setVisible( false);
 						lostFrame.setVisible( true);
 					}
 					else
 					{
-						timer.stop();
-						droneSelectMenu.setMyDroneSelectButton("Open");
-						droneSelectMenu.setEnemyDroneSelectButton("Open");
-						battleFrame.setVisible( false);
 						wonFrame.setVisible( true);
 					}
 				}
@@ -146,8 +147,29 @@ public class DroneerMaster extends JFrame
 							"Drone Not Selected", JOptionPane.WARNING_MESSAGE);
 				else
 				{
-					BoardUpdater.update(myDroneName, enemyDroneName);
-					battleFrame = new Test();
+					Constructor c_1, c_2;
+			    	
+					// Getting screen information
+			        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			        int height = (int) screenSize.getHeight();
+			        int width =  (int) screenSize.getWidth();
+			        
+			        System.out.println(height + "," + width);
+			        
+					try {
+						c_1 = Class.forName("examples."+myDroneName).getConstructor(Integer.TYPE, Integer.TYPE);
+						Drone drone_1 = (Drone) c_1.newInstance( (int) (width * Math.random()), (int) (height * Math.random()));
+						c_2 = Class.forName("examples."+enemyDroneName).getConstructor(Integer.TYPE, Integer.TYPE);
+						Drone drone_2 = (Drone) c_2.newInstance( (int) (width * Math.random()), (int) (height * Math.random()));
+						
+						battleFrame = new Test(drone_1, drone_2);
+						
+					} catch (Exception exc) {
+						System.out.println( exc.getMessage() );
+					}
+					
+//					BoardUpdater.update(myDroneName, enemyDroneName);
+//					battleFrame = new Test();
 					timer.start();
 
 					battleFrame.getBoard().addKeyListener( new KeyListener() {
