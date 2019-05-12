@@ -2,6 +2,7 @@ package drones;
 
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -159,7 +160,7 @@ public abstract class Drone extends Sprite implements Runnable {
 	}
 
 	/**
-	 * Scans the front of the drone, if the ellipse is on the front returns true; if
+	 * Scans the trajectory of the drone, if the ellipse is on the front returns true; if
 	 * not returns false.
 	 * 
 	 * @param e      The ellipse that will be tested
@@ -168,14 +169,71 @@ public abstract class Drone extends Sprite implements Runnable {
 	 * @return true if the ellipse is in front of the drone, false if not.
 	 */
 	public final boolean scan(Ellipse2D.Double e, int width, int height) {
-		return getIntersection(e, width, height) != null;
+		
+//		return getIntersection(e, width, height) != null;
+		
+		// position of the drone
+		double x1 = x + r / 2;
+		double y1 = y + r / 2;
+		
+		double m = Math.tan(angle); // calculate the slope
+		
+		// get the center of the ellipse
+		double xE = e.getCenterX();
+		double yE = e.getCenterY();
+		
+		boolean inFront;
+		
+		double simplifiedAngle = angle;
+		
+		if (angle < 0) {
+			
+			simplifiedAngle += Math.PI * 2;
+		}
+		
+		double xDiff = xE - x1;
+		double yDiff = yE - y1;
+		
+		if (simplifiedAngle < Math.PI / 2) {
+			
+			inFront = xDiff > 0 && yDiff > 0;
+		} else if (simplifiedAngle < Math.PI) {
+			
+			inFront = xDiff < 0 && yDiff > 0;
+		} else if (simplifiedAngle < 3 * Math.PI / 2) {
+			
+			inFront = xDiff < 0 && yDiff < 0;
+		} else {
+			
+			inFront = xDiff > 0 && yDiff < 0;
+		}
+		
+		if (!inFront)
+			return false;
+		
+		// create the endpoint
+		double x2;
+		
+		if (xDiff > 0) {
+			x2 = width;
+			System.out.println("Whyy");
+		} else {
+			x2 = 0;
+		}
+		
+		double y2 = y1 + m * (x2 - x1);
+		
+		Line2D trajectory = new Line2D.Double(x1, y1, x2, y2);
+		
+		return trajectory.intersects(e.getBounds2D());
 	}
 
 	/**
-	 * Returns the intersection point of the line of sight of the drone and the
-	 * ellipse that is chosen.Also calculates the distance between this point and
-	 * the drone.
+	 * This method has been deprecated, as we couldn't fix the errors. Returns the 
+	 * intersection point of the line of sight of the drone and the ellipse that is 
+	 * chosen.Also calculates the distance between this point and the drone.
 	 * 
+	 * @deprecated
 	 * @param e      The ellipse that will be tested
 	 * @param width  The width of the board
 	 * @param height The height of the board
@@ -199,7 +257,7 @@ public abstract class Drone extends Sprite implements Runnable {
 		double xD = x + r / 2;
 		double yD = y + r / 2;
 
-		// center the drone so that the calculations are simpler
+		// center the ellipse so that the calculations are simpler
 		double x1 = xD - xE;
 		double y1 = yD - yE;
 
@@ -228,7 +286,7 @@ public abstract class Drone extends Sprite implements Runnable {
 		} else {
 
 //			System.out.println("Found");
-			xI = (-b + Math.sqrt(delta)) / (2 * a);
+			xI = (-b - Math.sqrt(delta)) / (2 * a);
 			yI = m * (xI - x1) + y1;
 
 			distance = Math.sqrt((xI - x1) * (xI - x1) + (yI - y1) * (yI - y1));
@@ -309,6 +367,7 @@ public abstract class Drone extends Sprite implements Runnable {
 	/**
 	 * Returns the distance between the front of the drone and the nearest obstacle.
 	 * 
+	 * @deprecated
 	 * @return The distance between the front of the drone and the nearest obstacle.
 	 */
 	public final double getDistance() {
