@@ -27,7 +27,7 @@ public class SquareDrone extends Drone {
       
       while (true) {
          move(300);
-//         turn(450);
+         turn(450);
       }
    }
 

@@ -24,10 +24,10 @@ public class RandomDrone extends Drone {
     */
    @Override
    public void run() {
-      turn(90);
+	   
       while (true) {
          move((int) (Math.random() * 100));
-//         turn(360 + (int) (Math.random() * 360));
+         turn(360 + (int) (Math.random() * 360));
       }
    }
    
