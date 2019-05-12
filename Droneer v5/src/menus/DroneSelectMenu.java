@@ -41,6 +41,7 @@ public class DroneSelectMenu extends JPanel {
 		myDroneSelectButton = new DroneerMenuButton("Open");
 		enemyDroneSelectButton = new DroneerMenuButton("Open");
 		playButton = new DroneerMenuButton( " Play ");
+		playButton.setEnabled(false);
 		backButton = new DroneerMenuButton( "< Back");
 		JLabel empty = new JLabel("");
 		initLabel("", empty, 1);
