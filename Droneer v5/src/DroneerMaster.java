@@ -52,6 +52,7 @@ public class DroneerMaster extends JFrame
 	// drones to be runned
 	static String myDroneName, enemyDroneName;
 	static boolean isComingFromEscape;
+	static boolean isComingFromDesign;
 
 	// methods
 
@@ -227,6 +228,7 @@ public class DroneerMaster extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				mainMenuFrame.setVisible( false);
 				isComingFromEscape = false;
+				isComingFromDesign = false;
 				helpMenuFrame.setVisible( true);
 			}
 
@@ -260,8 +262,10 @@ public class DroneerMaster extends JFrame
 		// If clicked Help Button in Design Menu
 		designMenuPanel.getEditor().getHelpButton().addActionListener( new ActionListener() {
 			
-			public void actionPerformed( ActionEvent e) { 
+			public void actionPerformed( ActionEvent e) {
 				helpMenuFrame.setVisible(true);
+				isComingFromEscape = false;
+				isComingFromDesign = true;
 				designMenuFrame.setVisible(false);
 			}
 		});
@@ -293,6 +297,11 @@ public class DroneerMaster extends JFrame
 				{
 					helpMenuFrame.setVisible(false);
 					escapeMenuFrame.setVisible(true);
+				}
+				else if ( isComingFromDesign)
+				{
+					designMenuFrame.setVisible(true);
+					helpMenuFrame.setVisible(false);
 				}
 				else
 				{
@@ -326,6 +335,7 @@ public class DroneerMaster extends JFrame
 			{
 				helpMenuFrame.setVisible( true);
 				isComingFromEscape = true;
+				isComingFromDesign = false;
 				escapeMenuFrame.setVisible( false);
 			}
 		});

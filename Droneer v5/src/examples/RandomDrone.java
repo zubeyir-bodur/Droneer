@@ -27,7 +27,7 @@ public class RandomDrone extends Drone {
 	   
       while (true) {
          move((int) (Math.random() * 300));
-//         turn(360 + (int) (Math.random() * 360));
+         turn(360 + (int) (Math.random() * 360));
       }
    }
    
