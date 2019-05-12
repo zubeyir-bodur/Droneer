@@ -175,29 +175,32 @@ public class Board extends JPanel implements ActionListener {
     * @param Drone The drone
     */
    private void checkCollisions(Drone d) {
-      
+	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+       int height = (int) screenSize.getHeight();
+       int width =  (int) screenSize.getWidth();
+       
       if (d.getX() < 0) {
          d.hit();
          d.setX(1);
-         d.onHitBorderThread();
+         d.onHitBorder();
       }
       
-      if (d.getX() + d.getR() > this.getWidth()) {
+      if (d.getX() + d.getR() > width) {
          d.hit();
          d.setX(this.getWidth() - d.getR() - 1);
-         d.onHitBorderThread();
+         d.onHitBorder();
       }
       
       if (d.getY() < 0) {
          d.hit();
          d.setY(1);
-         d.onHitBorderThread();
+         d.onHitBorder();
       }
       
-      if (d.getY() + d.getR() > this.getHeight()) {
+      if (d.getY() + d.getR() > height) {
          d.hit();
          d.setY(this.getHeight() - d.getR() - 1);
-         d.onHitBorderThread();
+         d.onHitBorder();
       }
    }
    
