@@ -191,7 +191,8 @@ public class Editor extends JPanel
 				{
 					DroneCompiler compiler = new DroneCompiler();
 					try {
-						if( compiler.compile( dir + "\\" + filename) )
+						String dronesClassesPath = new File(System.getProperty("user.dir")+"\\bin\\").getCanonicalPath();
+						if( compiler.compile( dir + "\\" + filename, dronesClassesPath) )
 							interactionsPanel.update("Compilation successful!");
 						else
 							interactionsPanel.update("Compile errors found in : \n" + compiler.getDiagnosticsInfo() );
