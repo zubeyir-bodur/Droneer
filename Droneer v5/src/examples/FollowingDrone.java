@@ -2,21 +2,14 @@ package examples;
 
 import drones.*;
 
-/**
- * A drone that traces the enemy movements crudely
- * 
- * @author Baykam Say
- * @version 12.5.19
- */
-
-public class TracingDrone extends Drone {
+public class FollowingDrone extends Drone {
 
    private double enemyAngle;
    private boolean droneScanned;
    private int turnAmount;
 
-   public TracingDrone(int x, int y) {
-      super(x, y, "src/resources/drone.png");
+   public FollowingDrone(int x, int y) {
+      super(x, y, "src/resources/droneRed.png");
       droneScanned = false;
       turnAmount = 1;
    }
@@ -26,22 +19,14 @@ public class TracingDrone extends Drone {
     */
    @Override
    public void run() {
-      
-      while (!droneScanned) {
-         turn(2);
-      }
-      
-      droneScanned = false;
-      
+
       while (true) {
-         
+
          while (!droneScanned) {
-            turn(turnAmount);
-            turn(-turnAmount);
-            turnAmount *= 2;
+            turn(2);
          }
-         
-         turn((int) (enemyAngle - this.getAngle()));
+
+         move(100);
          droneScanned = false;
       }
    }
@@ -61,7 +46,7 @@ public class TracingDrone extends Drone {
     */
    @Override
    public void onHitBorder() {
-      turn(180);
-      move(100);
+      turn(90);
    }
+
 }

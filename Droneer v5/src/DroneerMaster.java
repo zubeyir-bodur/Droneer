@@ -3,6 +3,7 @@ import ide.*;
 import menus.*;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.*;
@@ -21,6 +22,7 @@ public class DroneerMaster extends JFrame {
    // properties
 
    static Timer timer;
+   private static final Color BACKGROUND= new Color(255, 240, 216);
 
    // ArrayList to easily make changes
    static ArrayList<JFrame> frames = new ArrayList<JFrame>();
@@ -364,6 +366,16 @@ public class DroneerMaster extends JFrame {
 //			// If Nimbus is not available, you can set the GUI to another look and feel.
 //		}
 
+      // add color
+//      mainMenuPanel.setBackground(BACKGROUND);
+//      designMenuPanel.setBackground(BACKGROUND);
+//      creditsMenu.setBackground(BACKGROUND);
+//      helpMenuPanel.setBackground(BACKGROUND);
+//      escapeMenu.setBackground(BACKGROUND);
+//      winMenu.setBackground(BACKGROUND);
+//      loseMenu.setBackground(BACKGROUND);
+//      droneSelectMenu.setBackground(BACKGROUND);
+      
       // ******** ADD THE PANELS TO INDIVIDUAL FRAMES ********
       mainMenuFrame.add(mainMenuPanel);
       designMenuFrame.add(designMenuPanel);

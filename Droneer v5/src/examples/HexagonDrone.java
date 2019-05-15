@@ -37,6 +37,5 @@ public class HexagonDrone extends Drone {
    @Override
    public void onHitBorder() {
       turn(180);
-      move(300);
    }
 }

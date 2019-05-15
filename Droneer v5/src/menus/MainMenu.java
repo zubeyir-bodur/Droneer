@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class MainMenu extends JPanel {
 
+//   private static final Color BACKGROUND= new Color(255, 240, 216);
+   
    private ArrayList<JComponent> components;
    private JLabel droneerLabel;
    private DroneerMenuButton playButton;
@@ -26,6 +28,8 @@ public class MainMenu extends JPanel {
       components = new ArrayList<JComponent>();
 
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      
+//      setBackground(BACKGROUND);
 
       // Block to set the label style
       droneerLabel = new JLabel("DRONEER");
